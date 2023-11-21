@@ -15,19 +15,31 @@ function Alert({ alerts = [], interval = 5 }: Props) {
   const id = useId();
 
   return (
-    <div id={id}>
-      <Slider class="carousel carousel-center w-screen bg-secondary gap-6">
+    <section id={id}>
+      {/* Mobile View */}
+      <Slider class="carousel lg:hidden carousel-center w-screen gap-6 bg-black">
         {alerts.map((alert, index) => (
           <Slider.Item index={index} class="carousel-item">
-            <span class="text-sm text-secondary-content flex justify-center items-center w-screen h-[38px]">
+            <span class="text-sm text-white uppercase flex justify-center items-center w-screen h-[38px]">
               {alert}
             </span>
           </Slider.Item>
         ))}
       </Slider>
 
+      {/* Desktop View */}
+      <div class="hidden lg:flex items-center justify-center w-full bg-black">
+        <div class="flex items-center justify-between max-w-[85%] mx-auto w-full">
+          {alerts.map((alert) => (
+            <span class="text-sm text-white uppercase flex justify-center items-center w-full h-[38px]">
+              {alert}
+            </span>
+          ))}
+        </div>
+      </div>
+
       <SliderJS rootId={id} interval={interval && interval * 1e3} />
-    </div>
+    </section>
   );
 }
 

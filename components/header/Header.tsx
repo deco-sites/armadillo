@@ -8,7 +8,14 @@ import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 
 export interface Props {
-  alerts: string[];
+  topbar?: {
+    alerts: string[];
+    /**
+     * @title Autoplay interval
+     * @description time (in seconds) to start the carousel autoplay
+     */
+    interval?: number;
+  };
 
   /** @title Search Bar */
   searchbar?: Omit<SearchbarProps, "platform">;
@@ -24,7 +31,7 @@ export interface Props {
 }
 
 function Header({
-  alerts,
+  topbar,
   searchbar,
   navItems,
   logo,
@@ -41,7 +48,7 @@ function Header({
           platform={platform}
         >
           <div class="bg-base-100 fixed w-full z-50">
-            <Alert alerts={alerts} />
+            {topbar && <Alert {...topbar} />}
             <Navbar
               items={items}
               searchbar={searchbar && { ...searchbar, platform }}
