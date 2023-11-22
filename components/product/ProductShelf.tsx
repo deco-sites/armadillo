@@ -21,6 +21,7 @@ export interface Props {
     headerfontSize?: "Normal" | "Large";
   };
   cardLayout?: cardLayout;
+  interval?: number;
 }
 
 function ProductShelf({
@@ -29,6 +30,7 @@ function ProductShelf({
   description,
   layout,
   cardLayout,
+  interval,
 }: Props) {
   const id = useId();
   const platform = usePlatform();
@@ -38,7 +40,7 @@ function ProductShelf({
   }
 
   return (
-    <div class="w-full mx-auto max-w-[95%] py-8 flex flex-col gap-5 lg:py-10">
+    <div class="w-full mx-auto max-w-[95%] py-8 flex flex-col gap-5">
       <Header
         title={title || ""}
         description={description || ""}
@@ -54,7 +56,7 @@ function ProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              class="carousel-item w-[270px] md:w-[320px] lg:w-[360px] xl:w-[430px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -79,7 +81,12 @@ function ProductShelf({
             </Slider.NextButton>
           </div>
         </>
-        <SliderJS rootId={id} />
+        <SliderJS
+          rootId={id}
+          infinite
+          scroll="smooth"
+          interval={interval && interval * 1e3}
+        />
         <SendEventOnView
           id={id}
           event={{

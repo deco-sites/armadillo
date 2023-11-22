@@ -57,8 +57,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 200;
-const HEIGHT = 279;
+const WIDTH = 667;
+const HEIGHT = 1000;
 
 function ProductCard(
   { product, preload, itemListName, layout, platform, index }: Props,
@@ -172,7 +172,7 @@ function ProductCard(
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${
+            class={`bg-base-100 col-span-full row-span-full w-full ${
               l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
@@ -189,7 +189,7 @@ function ProductCard(
               alt={back?.alternateName ?? front.alternateName}
               width={WIDTH}
               height={HEIGHT}
-              class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
+              class="bg-base-100 col-span-full row-span-full transition-opacity w-full opacity-0 lg:group-hover:opacity-100"
               sizes="(max-width: 640px) 50vw, 20vw"
               loading="lazy"
               decoding="async"
@@ -214,7 +214,7 @@ function ProductCard(
         </figcaption>
       </figure>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
+      <div class="flex-auto flex flex-col p-2 gap-1">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
@@ -234,11 +234,13 @@ function ProductCard(
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
-            <div class="flex flex-col gap-0">
+            <a href={url && relative(url)} class="flex flex-col gap-0">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-lg text-base-content"
-                  dangerouslySetInnerHTML={{ __html: name ?? "" }}
+                  class="truncate text-black font-semibold text-[0.9rem]"
+                  dangerouslySetInnerHTML={{
+                    __html: isVariantOf?.name ?? name ?? "",
+                  }}
                 />
               )}
               {l?.hide?.productDescription ? "" : (
@@ -247,37 +249,40 @@ function ProductCard(
                   dangerouslySetInnerHTML={{ __html: description ?? "" }}
                 />
               )}
-            </div>
+            </a>
           )}
-        {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-2">
-            <div
-              class={`flex flex-col gap-0 ${
-                l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
-                  : ""
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
-            >
+        {l?.hide?.allPrices
+          ? ""
+          : (
+            <a href={url && relative(url)} class="flex flex-col">
               <div
-                class={`line-through text-base-300 text-xs ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                class={`flex flex-row gap-1 font-semibold text-[0.8rem] ${
+                  align === "center"
+                    ? "justify-center"
+                    : "justify-start items-center"
                 }`}
               >
-                {formatPrice(listPrice, offers?.priceCurrency)}
-              </div>
-              <div class="text-accent text-base lg:text-xl">
-                {formatPrice(price, offers?.priceCurrency)}
-              </div>
-            </div>
-            {l?.hide?.installments
-              ? ""
-              : (
-                <div class="text-base-300 text-sm lg:text-base truncate">
-                  ou {installments}
+                <div
+                  class={`line-through text-base-300`}
+                >
+                  {formatPrice(listPrice, offers?.priceCurrency)}
                 </div>
-              )}
-          </div>
-        )}
+
+                <span class="text-base-300">/</span>
+
+                <div class="text-black">
+                  {formatPrice(price, offers?.priceCurrency)}
+                </div>
+              </div>
+              {!installments || l?.hide?.installments
+                ? ""
+                : (
+                  <div class="text-base-300 text-[0.7rem] truncate">
+                    ou {installments.replace(".", ",")}
+                  </div>
+                )}
+            </a>
+          )}
 
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (
