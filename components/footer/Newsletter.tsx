@@ -2,6 +2,8 @@ import { useSignal } from "@preact/signals";
 import { invoke } from "$store/runtime.ts";
 import type { JSX } from "preact";
 
+import Icon from "$store/components/ui/Icon.tsx";
+
 export interface Form {
   placeholder?: string;
   buttonText?: string;
@@ -26,6 +28,7 @@ function Newsletter(
 ) {
   const { tiled = false } = layout;
   const loading = useSignal(false);
+  const isSubmitted = useSignal(false);
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -39,6 +42,7 @@ function Newsletter(
       await invoke.vtex.actions.newsletter.subscribe({ email });
     } finally {
       loading.value = false;
+      isSubmitted.value = true;
     }
   };
 
@@ -52,38 +56,43 @@ function Newsletter(
     >
       <div class="flex flex-col gap-4">
         {content?.title && (
-          <h3 class={tiled ? "text-2xl lg:text-3xl" : "text-lg"}>
+          <span class="text-sm font-bold">
             {content?.title}
-          </h3>
+          </span>
         )}
         {content?.description && <div>{content?.description}</div>}
       </div>
       <div class="flex flex-col gap-4">
-        <form
-          class="form-control"
-          onSubmit={handleSubmit}
-        >
-          <div class="flex flex-wrap gap-3">
-            <input
-              name="email"
-              class="flex-auto md:flex-none input input-bordered md:w-80 text-base-content"
-              placeholder={content?.form?.placeholder || "Digite seu email"}
-            />
-            <button
-              type="submit"
-              class="btn disabled:loading"
-              disabled={loading}
-            >
-              {content?.form?.buttonText || "Inscrever"}
-            </button>
-          </div>
-        </form>
-        {content?.form?.helpText && (
+        {isSubmitted.value ? <p>obrigado!</p> : (
+          <form
+            class="flex items-center justify-center w-[90%] sm:w-full lg:min-w-[420px] border-b border-b-black pb-0.5 h-[46px]"
+            onSubmit={handleSubmit}
+          >
+            <div class="flex justify-between items-center w-full h-full">
+              <input
+                name="email"
+                class="flex w-full bg-transparent pl-1.5 focus:outline-none h-full text-black placeholder:text-black uppercase"
+                placeholder={content?.form?.placeholder || "insira seu email"}
+              />
+
+              <button
+                type="submit"
+                class="disabled:loading pr-1.5 h-full"
+                disabled={loading}
+              >
+                <Icon size={24} id="ChevronRight" strokeWidth={3} />
+              </button>
+            </div>
+          </form>
+        )}
+        {
+          /* {content?.form?.helpText && (
           <div
             class="text-sm"
             dangerouslySetInnerHTML={{ __html: content?.form?.helpText }}
           />
-        )}
+        )} */
+        }
       </div>
     </div>
   );

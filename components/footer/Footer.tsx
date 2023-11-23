@@ -23,18 +23,15 @@ export type Section = {
 };
 
 export interface SocialItem {
-  label:
-    | "Discord"
-    | "Facebook"
-    | "Instagram"
-    | "Linkedin"
-    | "Tiktok"
-    | "Twitter";
+  label: string;
   link: string;
 }
 
 export interface PaymentItem {
-  label: "Diners" | "Elo" | "Mastercard" | "Pix" | "Visa";
+  image: ImageWidget;
+  description: string;
+  width?: number;
+  height?: number;
 }
 
 export interface MobileApps {
@@ -152,12 +149,10 @@ function Footer({
     ],
   }],
   social = {
-    title: "Redes sociais",
-    items: [{ label: "Instagram", link: "/" }, { label: "Tiktok", link: "/" }],
+    items: [],
   },
   payments = {
-    title: "Formas de pagamento",
-    items: [{ label: "Mastercard" }, { label: "Visa" }, { label: "Pix" }],
+    items: [],
   },
   mobileApps = { apple: "/", android: "/" },
   regionOptions = { currency: [], language: [] },
@@ -198,7 +193,7 @@ function Footer({
   );
   const _social = layout?.hide?.socialLinks
     ? <></>
-    : <Social content={social} vertical={layout?.variation == "Variation 3"} />;
+    : <Social content={social} />;
   const _payments = layout?.hide?.paymentMethods
     ? <></>
     : <PaymentMethods content={payments} />;
@@ -214,29 +209,49 @@ function Footer({
 
   return (
     <footer
-      class={`w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10 bg-primary text-black`}
+      class={`w-full flex flex-col pt-14 pb-5 gap-10 bg-primary text-black`}
     >
-      <div class="lg:container mx-6 lg:mx-auto">
+      <div class="">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
-          <div class="flex flex-col gap-10">
-            <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
+          <div class="flex flex-col gap-3">
+            <div class="flex flex-col md:flex-row md:justify-between md:flex-nowrap gap-8 lg:gap-12 container max-w-[90%]">
               {_logo}
               {_sectionLinks}
-              {_newsletter}
-            </div>
-            <Divider />
-            <div class="flex flex-col md:flex-row gap-10 md:gap-14 md:items-end">
-              {_payments}
-              {_social}
-              <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-end">
-                {_apps}
-                {_region}
+              <div class="flex flex-col items-center w-full">
+                <div class="flex flex-col gap-6">
+                  {_newsletter}
+                  {_social}
+                </div>
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
-              <PoweredByDeco />
-              {_links}
+            <div class="flex flex-col md:flex-row gap-10 md:gap-14 items-center justify-center container max-w-[90%]">
+              {_payments}
+
+              {
+                /* <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-end">
+                {_apps}
+                {_region}
+              </div> */
+              }
+            </div>
+            <Divider />
+            <div class="flex flex-col items-center justify-center container max-w-[90%]">
+              <a href="https://seal.siteblindado.com/www.armadillo.com.br/seal.png">
+                <img
+                  src="https://seal.siteblindado.com/www.armadillo.com.br/seal.png"
+                  alt="site blindado"
+                  width={115}
+                  height={32}
+                  loading="lazy"
+                />
+              </a>
+
+              <span class="text-[#999] text-[0.6875rem] font-light">
+                © Armadillo Indústria e Comércio de Roupas Ltda - CNPJ
+                03.863.125/0012-96 | Rua Antunes Maciel, 313, São Cristóvão/ RJ
+                - CEP 20940-010
+              </span>
             </div>
           </div>
         )}

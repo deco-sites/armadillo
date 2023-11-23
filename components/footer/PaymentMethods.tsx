@@ -1,7 +1,10 @@
-import Icon from "$store/components/ui/Icon.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface PaymentItem {
-  label: "Diners" | "Elo" | "Mastercard" | "Pix" | "Visa";
+  image: ImageWidget;
+  description: string;
+  width?: number;
+  height?: number;
 }
 
 export default function PaymentMethods(
@@ -11,20 +14,22 @@ export default function PaymentMethods(
     <>
       {content && content.items && content.items.length > 0 && (
         <div class="flex flex-col gap-4">
-          {content.title && <h3 class="text-lg">{content.title}</h3>}
+          {content.title && <span class="text-lg">{content.title}</span>}
           <ul class="flex items-center gap-4 flex-wrap">
             {content.items.map((item) => {
               return (
                 <li
-                  class="border"
-                  title={item.label}
+                  title={item.description}
                 >
-                  <Icon
-                    width={48}
-                    height={32}
-                    strokeWidth={1}
-                    id={item.label}
-                  />
+                  <a>
+                    <img
+                      src={item.image}
+                      alt={item.description}
+                      width={item.width || 45}
+                      height={item.height || 45}
+                      loading="lazy"
+                    />
+                  </a>
                 </li>
               );
             })}
