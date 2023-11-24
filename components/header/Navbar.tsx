@@ -49,8 +49,8 @@ function Navbar({ items, searchbar, logo }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full h-[90px] mx-auto max-w-[90%]">
-        <div class="flex-none w-44">
+      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full h-[90px] mx-auto max-w-[90%] gap-2">
+        <div class="flex-none w-[20rem]">
           {logo && (
             <a
               href="/"
@@ -64,8 +64,7 @@ function Navbar({ items, searchbar, logo }: {
         <div class="flex-auto flex justify-center">
           {items.map((item) => <NavItem item={item} />)}
         </div>
-        <div class="flex-none w-44 flex items-center justify-end gap-2">
-          <SearchButton />
+        <div class="flex-none w-[22rem] flex items-center justify-end gap-2">
           <Searchbar searchbar={searchbar} />
           <a
             class="btn btn-circle btn-sm btn-ghost"
