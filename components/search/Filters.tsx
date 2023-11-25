@@ -1,4 +1,4 @@
-import Avatar from "$store/components/ui/Avatar.tsx";
+import Avatar from "$store/components/product/Avatar.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import type {
   Filter,
@@ -43,7 +43,6 @@ function FilterValues({ key, values }: FilterToggle) {
               <Avatar
                 content={value}
                 variant={selected ? "active" : "default"}
-                link={url}
               />
             </a>
           );
