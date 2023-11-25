@@ -1,4 +1,4 @@
-import Avatar from "$store/components/ui/Avatar.tsx";
+import Avatar from "$store/components/product/Avatar.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 
@@ -22,7 +22,6 @@ function VariantSelector({ product }: Props) {
                 <button f-partial={link} f-client-nav>
                   <Avatar
                     content={value}
-                    link={link || ""}
                     variant={link === url
                       ? "active"
                       : link
