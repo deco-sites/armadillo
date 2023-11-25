@@ -88,17 +88,25 @@ function Searchbar({
     };
   }, [modal]);
 
+  if (self.window.innerWidth >= 600) {
+    displaySearchPopup.value = true;
+  }
+
   return (
     <div class="flex-grow flex flex-col relative z-[70]">
       <form
         id={id}
         action={action}
-        class="flex flex-grow relative h-[40px] px-0 border-b border-b-black"
+        class={`flex flex-grow relative h-[40px] px-0 ${
+          !displaySearchPopup.value ? "justify-end" : "border-b border-b-black"
+        }`}
       >
         <input
           ref={searchInputRef}
           id="search-input"
-          class="flex-grow w-full outline-none placeholder-shown:sibling:hidden placeholder:text-sm placeholder:text-black font-semibold"
+          class={`${
+            !displaySearchPopup.value ? "hidden" : "flex"
+          } flex-grow w-[90px] sm:w-[130px] md:w-full outline-none placeholder-shown:sibling:hidden placeholder:text-sm placeholder:text-black`}
           aria-label="Barra de pesquisa"
           aria-expanded={!hasProducts && !hasTerms ? "false" : "true"}
           name={name}
@@ -117,23 +125,46 @@ function Searchbar({
 
             setSearch(value);
           }}
-          placeholder={placeholder}
+          placeholder={self.window.innerWidth >= 600 ? placeholder : ""}
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
         />
 
-        <button
-          type="submit"
-          class="btn-ghost bg-transparent"
-          aria-label="Search"
-          for={id}
-          tabIndex={-1}
-        >
-          {loading.value
-            ? <span class="loading loading-spinner loading-xs" />
-            : <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} />}
-        </button>
+        {!displaySearchPopup.value
+          ? (
+            <button
+              type="button"
+              class="btn-ghost bg-transparent"
+              aria-label="Search"
+              onClick={(e) => {
+                e.preventDefault();
+
+                if (!displaySearchPopup.value) {
+                  displaySearchPopup.value = !displaySearchPopup.value;
+                }
+
+                return;
+              }}
+            >
+              {loading.value
+                ? <span class="loading loading-spinner loading-xs" />
+                : <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} />}
+            </button>
+          )
+          : (
+            <button
+              type="submit"
+              class="btn-ghost bg-transparent"
+              aria-label="Search"
+              for={id}
+              tabIndex={-1}
+            >
+              {loading.value
+                ? <span class="loading loading-spinner loading-xs" />
+                : <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} />}
+            </button>
+          )}
 
         {
           /* <Button
@@ -149,7 +180,7 @@ function Searchbar({
       {showSuggestions && (
         <div
           ref={modal}
-          class="flex flex-col gap-6 divide-y-2 absolute flex-grow top-10 px-[15px] pt-2 rounded-md max-h-[450px] w-[400px] bg-white overflow-y-auto z-[9999999]"
+          class="flex flex-col gap-3 divide-y-2 absolute flex-grow top-10 px-[15px] -translate-x-[40%] md:translate-x-0 pt-2 rounded-md max-h-[450px] lg:max-h-[960px] w-[300px] sm:w-[450px] bg-white overflow-y-auto z-[9999999]"
         >
           {notFound
             ? (
@@ -180,7 +211,7 @@ function Searchbar({
                           href={`/s?q=${term}`}
                           class="flex gap-4 items-center"
                         >
-                          <span class="text-sm font-bold uppercase">
+                          <span class="text-xs font-semibold uppercase">
                             {term}
                           </span>
                         </a>
@@ -220,7 +251,7 @@ function Searchbar({
                           />
 
                           <h2
-                            class="truncate text-black uppercase font-bold pt-1.5"
+                            class="truncate text-black uppercase font-semibold text-xs pt-1.5"
                             dangerouslySetInnerHTML={{
                               __html: isVariantOf?.name ?? name ??
                                 "",

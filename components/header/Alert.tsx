@@ -29,7 +29,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
 
       {/* Desktop View */}
       <div class="hidden lg:flex items-center justify-center w-full bg-black">
-        <div class="flex items-center justify-between max-w-[85%] mx-auto w-full">
+        <div class="flex items-center justify-between max-w-[95%] mx-auto w-full">
           {alerts.map((alert) => (
             <span class="text-sm text-white uppercase flex justify-center items-center w-full h-[38px]">
               {alert}

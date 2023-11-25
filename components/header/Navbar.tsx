@@ -1,5 +1,6 @@
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
+import LoginElement from "$store/components/header/LoginElement.tsx";
 import { MenuButton, SearchButton } from "$store/islands/Header/Buttons.tsx";
 import CartButtonLinx from "$store/islands/Header/Cart/linx.tsx";
 import CartButtonShopify from "$store/islands/Header/Cart/shopify.tsx";
@@ -41,15 +42,15 @@ function Navbar({ items, searchbar, logo }: {
           </a>
         )}
 
-        <div class="flex gap-1">
-          <SearchButton />
+        <div class="flex items-center gap-1">
+          <Searchbar searchbar={searchbar} />
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
         </div>
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full h-[90px] mx-auto max-w-[90%] gap-2">
+      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full h-[90px] mx-auto max-w-[95%] gap-2">
         <div class="flex-none w-[20rem]">
           {logo && (
             <a
@@ -61,36 +62,20 @@ function Navbar({ items, searchbar, logo }: {
             </a>
           )}
         </div>
-        <div class="flex-auto flex justify-center">
+        <div class="flex-auto flex justify-center gap-x-6">
           {items.map((item) => <NavItem item={item} />)}
         </div>
-        <div class="flex-none w-[22rem] flex items-center justify-end gap-2">
+        <div class="flex-none w-[22rem] flex items-center justify-end gap-3">
           <Searchbar searchbar={searchbar} />
-          <a
-            class="btn btn-circle btn-sm btn-ghost"
-            href="/login"
-            aria-label="Log in"
-          >
-            <Icon id="User" size={24} strokeWidth={0.4} />
-          </a>
-          <a
-            class="btn btn-circle btn-sm btn-ghost"
-            href="/wishlist"
-            aria-label="Wishlist"
-          >
-            <Icon
-              id="Heart"
-              size={24}
-              strokeWidth={2}
-              fill="none"
-            />
-          </a>
+
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
           {platform === "wake" && <CartButtonWake />}
           {platform === "linx" && <CartButtonLinx />}
           {platform === "shopify" && <CartButtonShopify />}
           {platform === "nuvemshop" && <CartButtonNuvemshop />}
+
+          <LoginElement />
         </div>
       </div>
     </>

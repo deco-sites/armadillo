@@ -57,25 +57,18 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
 
   return (
     <Drawer // left drawer
-      open={displayMenu.value || displaySearchDrawer.value}
+      open={displayMenu.value}
       onClose={() => {
         displayMenu.value = false;
-        displaySearchDrawer.value = false;
       }}
       aside={
         <Aside
           onClose={() => {
             displayMenu.value = false;
-            displaySearchDrawer.value = false;
           }}
-          title={displayMenu.value ? "Menu" : "Buscar"}
+          title={"Menu"}
         >
           {displayMenu.value && <Menu {...menu} />}
-          {searchbar && displaySearchDrawer.value && (
-            <div class="w-screen">
-              <Searchbar {...searchbar} />
-            </div>
-          )}
         </Aside>
       }
     >

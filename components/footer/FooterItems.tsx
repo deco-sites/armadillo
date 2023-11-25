@@ -52,7 +52,7 @@ export default function FooterItems(
                   <div class="collapse-title min-h-[0] !p-0 flex gap-2">
                     <span>{section.label}</span>
                   </div>
-                  <div class="collapse-content">
+                  <div class="collapse-content !p-0">
                     <ul
                       class={`flex flex-col gap-1 pl-5 pt-2`}
                     >

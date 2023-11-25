@@ -9,7 +9,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
   return (
     <li class="group flex items-center">
       <a href={url} class="px-4 py-3">
-        <span class="group-hover:underline">
+        <span class="group-hover:underline text-xs font-bold">
           {name}
         </span>
       </a>

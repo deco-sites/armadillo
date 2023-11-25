@@ -13,7 +13,7 @@ export default function Social(
       {content && content.items && content.items.length > 0 && (
         <div class="flex flex-col gap-4">
           {content.title && <span class="text-lg">{content.title}</span>}
-          <ul class="flex lg:flex-col lg:items-start gap-2">
+          <ul class="flex flex-col items-start gap-4 lg:gap-2">
             {content.items.map((item) => {
               return (
                 <li>

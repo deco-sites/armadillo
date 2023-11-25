@@ -218,7 +218,7 @@ function Footer({
               {_logo}
               {_sectionLinks}
               <div class="flex flex-col items-center w-full">
-                <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-6 w-full lg:w-auto">
                   {_newsletter}
                   {_social}
                 </div>
@@ -237,7 +237,7 @@ function Footer({
             </div>
             <Divider />
             <div class="flex flex-col items-center justify-center container max-w-[90%]">
-              <a href="https://seal.siteblindado.com/www.armadillo.com.br/seal.png">
+              <a href="https://www.siteblindado.com/consumidor/selo-blindado/?language1=pt&hostname=www.armadillo.com.br">
                 <img
                   src="https://seal.siteblindado.com/www.armadillo.com.br/seal.png"
                   alt="site blindado"
@@ -247,7 +247,7 @@ function Footer({
                 />
               </a>
 
-              <span class="text-[#999] text-[0.6875rem] font-light">
+              <span class="text-[#999] text-[0.6875rem] font-light text-center">
                 © Armadillo Indústria e Comércio de Roupas Ltda - CNPJ
                 03.863.125/0012-96 | Rua Antunes Maciel, 313, São Cristóvão/ RJ
                 - CEP 20940-010
