@@ -21,7 +21,7 @@ export default function PaymentMethods(
                 <li
                   title={item.description}
                 >
-                  <a>
+                  <div>
                     <img
                       src={item.image}
                       alt={item.description}
@@ -29,7 +29,7 @@ export default function PaymentMethods(
                       height={item.height || 45}
                       loading="lazy"
                     />
-                  </a>
+                  </div>
                 </li>
               );
             })}
