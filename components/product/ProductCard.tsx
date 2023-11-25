@@ -78,7 +78,7 @@ function ProductCard(
   const [front, back] = images ?? [];
   const { listPrice, price, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
-  const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+  const variants = Object.entries(Object.values(possibilities)[1] ?? {});
 
   const l = layout;
   const align =
@@ -87,12 +87,11 @@ function ProductCard(
       : "center";
   const skuSelector = variants.map(([value, link]) => (
     <li>
-      <a href={link}>
-        <Avatar
-          variant={link === url ? "active" : link ? "default" : "disabled"}
-          content={value}
-        />
-      </a>
+      <Avatar
+        variant={link === url ? "active" : link ? "default" : "disabled"}
+        content={value}
+        link={link || ""}
+      />
     </li>
   ));
   const cta = (
@@ -199,38 +198,16 @@ function ProductCard(
         <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
-            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
+            l?.onMouseOver?.showCta
               ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
               : "lg:hidden"
           }`}
         >
-          {/* SKU Selector */}
-          {l?.onMouseOver?.showSkuSelector && (
-            <ul class="flex justify-center items-center gap-2 w-full">
-              {skuSelector}
-            </ul>
-          )}
           {l?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col p-2 gap-1">
-        {/* SKU Selector */}
-        {(!l?.elementsPositions?.skuSelector ||
-          l?.elementsPositions?.skuSelector === "Top") && (
-          <>
-            {l?.hide?.skuSelector ? "" : (
-              <ul
-                class={`flex items-center gap-2 w-full overflow-auto p-3 ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
-          </>
-        )}
-
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
@@ -287,15 +264,13 @@ function ProductCard(
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (
           <>
-            {l?.hide?.skuSelector ? "" : (
-              <ul
-                class={`flex items-center gap-2 w-full ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
+            <ul
+              class={`flex min-h-[32px] max-h-[32px] items-center gap-2 w-full ${
+                align === "center" ? "justify-center" : "justify-start"
+              } ${l?.hide?.skuSelector && "opacity-0 group-hover:opacity-100"}`}
+            >
+              {skuSelector}
+            </ul>
           </>
         )}
 

@@ -43,6 +43,7 @@ function FilterValues({ key, values }: FilterToggle) {
               <Avatar
                 content={value}
                 variant={selected ? "active" : "default"}
+                link={url}
               />
             </a>
           );
