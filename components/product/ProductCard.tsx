@@ -262,10 +262,11 @@ function ProductCard(
           )}
 
         {/* SKU Selector */}
-        {l?.elementsPositions?.skuSelector === "Bottom" && (
+        {l?.elementsPositions?.skuSelector === "Bottom" &&
+          l?.onMouseOver?.showSkuSelector && (
           <>
             <ul
-              class={`flex min-h-[32px] max-h-[32px] items-center gap-2 w-full ${
+              class={`hidden lg:flex min-h-[32px] max-h-[32px] items-center gap-2 w-full ${
                 align === "center" ? "justify-center" : "justify-start"
               } ${l?.hide?.skuSelector && "opacity-0 group-hover:opacity-100"}`}
             >
