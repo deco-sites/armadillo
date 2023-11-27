@@ -1,11 +1,51 @@
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import { headerHeight } from "./constants.ts";
 
+import type { ImageWidget } from "apps/admin/widgets.ts";
+
+export interface SiteNavigationElementLeaf {
+  /** @hidden */
+  "@type": "SiteNavigationElement";
+  additionalType?: string;
+  identifier?: string;
+  images?: Array<{
+    url: ImageWidget;
+    alternateName: string;
+    width?: number;
+    height?: number;
+  }>;
+  /** The name of the item. */
+  name?: string;
+  /** URL of the item. */
+  url?: string;
+}
+
+export interface SiteNavigationElement extends SiteNavigationElementLeaf {
+  // TODO: The schema generator is not handling recursive types leading to an infinite loop
+  // Lets circunvent this issue by enumerating the max allowed depth
+  children?: Array<
+    SiteNavigationElementLeaf & {
+      children?: Array<
+        SiteNavigationElementLeaf & {
+          children?: Array<
+            SiteNavigationElementLeaf & {
+              children?: Array<
+                SiteNavigationElementLeaf & {
+                  children?: SiteNavigationElementLeaf[];
+                }
+              >;
+            }
+          >;
+        }
+      >;
+    }
+  >;
+}
+
 function NavItem({ item }: { item: SiteNavigationElement }) {
   const { url, name, children } = item;
-  const image = item?.image?.[0];
+  const images = item?.images ?? [];
 
   return (
     <li class="group flex items-center">
@@ -40,11 +80,11 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                     <span>{node.name}</span>
                   </a>
 
-                  <ul class="flex flex-col gap-1 mt-4">
+                  <ul class="flex flex-col gap-0.5 mt-4 min-w-[400px]">
                     {node.children?.map((leaf) => (
-                      <li>
-                        <a class="hover:underline" href={leaf.url}>
-                          <span class="text-xs">{leaf.name}</span>
+                      <li class="hover:bg-[#449349] p-1.5 w-full font-bold cursor-pointer">
+                        <a href={leaf.url}>
+                          <span class="text-sm">{leaf.name}</span>
                         </a>
                       </li>
                     ))}
@@ -53,16 +93,22 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
               ))}
             </ul>
 
-            {image?.url && (
-              <Image
-                class="p-6"
-                src={image.url}
-                alt={image.alternateName}
-                width={300}
-                height={332}
-                loading="lazy"
-              />
-            )}
+            <div class="flex flex-wrap w-full h-full items-center gap-4">
+              {images && images?.map((image) => (
+                <>
+                  {image.url && (
+                    <Image
+                      class="py-6"
+                      src={image.url}
+                      alt={image.alternateName}
+                      width={image.width || 326}
+                      height={image.height || 340}
+                      loading="lazy"
+                    />
+                  )}
+                </>
+              ))}
+            </div>
           </div>
         )}
     </li>

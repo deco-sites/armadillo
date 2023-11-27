@@ -56,7 +56,7 @@ function ProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[270px] md:w-[320px] lg:w-[360px] xl:w-[430px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              class="carousel-item w-[270px] md:w-[320px] lg:w-[360px] xl:w-[435px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -70,13 +70,13 @@ function ProductShelf({
         </Slider>
 
         <>
-          <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
+          <div class="relative block z-10 col-start-1 row-start-3">
             <Slider.PrevButton class="absolute right-1/2 lg:right-[95%] lg:-translate-y-8">
               <Icon size={40} height={40} id="ChevronLeft" strokeWidth={1} />
             </Slider.PrevButton>
           </div>
-          <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-            <Slider.NextButton class="absolute left-1/5 rotate-180 lg:-translate-y-8">
+          <div class="relative block z-10 col-start-3 row-start-3">
+            <Slider.NextButton class="absolute lg:left-1/5 rotate-180 lg:-translate-y-8">
               <Icon size={40} height={40} id="ChevronLeft" strokeWidth={1} />
             </Slider.NextButton>
           </div>
