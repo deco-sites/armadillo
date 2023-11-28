@@ -10,6 +10,7 @@ interface Props {
   loading?: "eager" | "lazy";
   children: ComponentChildren;
   aside: ComponentChildren;
+  hasOverlay?: boolean;
 }
 
 function Drawer(props: Props) {
@@ -20,6 +21,7 @@ function Drawer(props: Props) {
     onClose,
     class: _class = "",
     loading = "lazy",
+    hasOverlay = true,
   } = props;
   const lazy = useSignal(loading === "lazy" && !open);
   const id = useId();
@@ -54,7 +56,10 @@ function Drawer(props: Props) {
       </div>
 
       <aside class="drawer-side h-full z-50">
-        <label for={id} class="drawer-overlay" />
+        <label
+          for={id}
+          class={`drawer-overlay ${hasOverlay && "!bg-transparent"}`}
+        />
         {!lazy.value && aside}
       </aside>
     </div>

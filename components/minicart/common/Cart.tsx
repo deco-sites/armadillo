@@ -44,14 +44,16 @@ function Cart({
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
-      style={{ minWidth: "calc(min(100vw, 425px))", maxWidth: "425px" }}
+      style={{ minWidth: "calc(min(100vw, 700px))", maxWidth: "700px" }}
     >
       {isEmtpy
         ? (
           <div class="flex flex-col gap-6">
-            <span class="font-medium text-2xl">Sua sacola está vazia</span>
+            <span class="font-bold text-2xl text-[#449349]">
+              Seu carrinho está vazio!
+            </span>
             <Button
-              class="btn-outline"
+              class="btn-primary btn-block bg-[#449349] hover:bg-[#449349] text-white uppercase"
               onClick={() => {
                 displayCart.value = false;
               }}
@@ -127,11 +129,23 @@ function Cart({
                 </span>
               </div>
 
-              <div class="p-4">
+              <div class="flex items-center justify-between gap-3 p-4">
+                <div class="inline-block w-full">
+                  <Button
+                    class="btn-primary btn-block bg-[#449349] hover:bg-[#449349] text-white uppercase"
+                    disabled={loading}
+                    onClick={() => {
+                      displayCart.value = false;
+                    }}
+                  >
+                    Continuar comprando
+                  </Button>
+                </div>
+
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="btn-primary btn-block"
+                    class="btn-primary btn-block bg-[#449349] hover:bg-[#449349] text-white uppercase"
                     disabled={loading || isEmtpy}
                     onClick={() => {
                       sendEvent({

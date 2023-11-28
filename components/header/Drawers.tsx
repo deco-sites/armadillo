@@ -3,6 +3,7 @@ import Cart from "$store/components/minicart/Cart.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
+import Image from "apps/website/components/Image.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
@@ -23,25 +24,40 @@ export interface Props {
 }
 
 const Aside = (
-  { title, onClose, children, isFullWidth }: {
+  { title, onClose, children, isFullWidth = false, isMinicart = false }: {
     title?: string;
     onClose?: () => void;
     children: ComponentChildren;
     isFullWidth?: boolean;
+    isMinicart?: boolean;
   },
 ) => (
   <div
-    class={`bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100%] ${
-      isFullWidth && "w-full"
+    class={`grid grid-rows-[auto_1fr] max-w-[100%] ${isFullWidth && "w-full"} ${
+      isMinicart
+        ? "h-[86.70vh] absolute right-0 top-[126px] bg-whitesmoke lg:w-[700px] z-[999]"
+        : "h-full bg-base-100"
     }`}
   >
     {title && (
-      <div class="flex justify-between items-center">
+      <div class="flex justify-center items-center pt-10 pb-2">
+        {isMinicart && (
+          <Image
+            src="https://armadillo.vteximg.com.br/arquivos/backpack.png?v=637180013501100000"
+            alt="Bag Icon"
+            width={56}
+            height={56}
+            loading="lazy"
+          />
+        )}
         <h1 class="px-4 py-3">
-          <span class="font-medium text-2xl">{title}</span>
+          <span class="font-bold text-xl uppercase">{title}</span>
         </h1>
         {onClose && (
-          <Button class="btn btn-ghost" onClick={onClose}>
+          <Button
+            class="btn btn-ghost absolute top-4 right-4 z-[1000]"
+            onClick={onClose}
+          >
             <Icon id="XMark" size={24} strokeWidth={2} />
           </Button>
         )}
@@ -83,9 +99,11 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
         class="drawer-end"
         open={displayCart.value !== false}
         onClose={() => displayCart.value = false}
+        hasOverlay={false}
         aside={
           <Aside
-            title="Minha sacola"
+            title="Minha mochila"
+            isMinicart={true}
             onClose={() => displayCart.value = false}
           >
             <Cart platform={platform} />

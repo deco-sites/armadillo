@@ -47,7 +47,7 @@ function Header({
           searchbar={searchbar}
           platform={platform}
         >
-          <div class="bg-base-100 fixed w-full z-50">
+          <div class="bg-base-100 fixed w-full z-[999999]">
             {topbar && <Alert {...topbar} />}
             <Navbar
               items={items}

@@ -58,69 +58,59 @@ function CartItem(
   );
 
   return (
-    <div
-      class="grid grid-rows-1 gap-2"
-      style={{
-        gridTemplateColumns: "auto 1fr",
-      }}
-    >
-      <Image
-        {...image}
-        style={{ aspectRatio: "108 / 150" }}
-        width={108}
-        height={150}
-        class="h-full object-contain"
-      />
-
-      <div class="flex flex-col gap-2">
-        <div class="flex justify-between items-center">
-          <span>{name}</span>
-          <Button
-            disabled={loading || isGift}
-            loading={loading}
-            class="btn-ghost btn-square"
-            onClick={withLoading(async () => {
-              const analyticsItem = itemToAnalyticsItem(index);
-
-              await onUpdateQuantity(0, index);
-
-              analyticsItem && sendEvent({
-                name: "remove_from_cart",
-                params: { items: [analyticsItem] },
-              });
-            })}
-          >
-            <Icon id="Trash" size={24} />
-          </Button>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="line-through text-base-300 text-sm">
-            {formatPrice(list, currency, locale)}
-          </span>
-          <span class="text-sm text-secondary">
-            {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
-          </span>
-        </div>
-
-        <QuantitySelector
+    <div class="flex items-center justify-between gap-2 w-[90%]">
+      <div class="flex items-center justify-center gap-1.5">
+        <Button
           disabled={loading || isGift}
-          quantity={quantity}
-          onChange={withLoading(async (quantity) => {
+          loading={loading}
+          class="btn-ghost btn-square"
+          onClick={withLoading(async () => {
             const analyticsItem = itemToAnalyticsItem(index);
-            const diff = quantity - item.quantity;
 
-            await onUpdateQuantity(quantity, index);
+            await onUpdateQuantity(0, index);
 
-            if (analyticsItem) {
-              sendEvent({
-                name: diff < 0 ? "remove_from_cart" : "add_to_cart",
-                params: {
-                  items: [{ ...analyticsItem, quantity: Math.abs(diff) }],
-                },
-              });
-            }
+            analyticsItem && sendEvent({
+              name: "remove_from_cart",
+              params: { items: [analyticsItem] },
+            });
           })}
+        >
+          <Icon id="XMark" size={24} strokeWidth={1} />
+        </Button>
+
+        <Image
+          src={image?.src.replace("216-300", "80-120")}
+          alt={image?.alt}
+          style={{ aspectRatio: "18:25" }}
+          width={80}
+          height={120}
+          class="h-full object-contain"
         />
+
+        <div class="flex flex-col gap-2">
+          <span>{name}</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        {
+          /* <span class="line-through text-base-300 text-sm">
+          {formatPrice(list, currency, locale)}
+        </span> */
+        }
+        <span class="text-sm text-black">
+          {isGift
+            ? <span>Grátis</span>
+            : (
+              <div class="flex flex-col items-center justify-center">
+                {formatPrice(sale, currency, locale)}
+              </div>
+            )}
+        </span>
+      </div>
+
+      <div>
+        {quantity}
       </div>
     </div>
   );
