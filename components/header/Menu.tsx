@@ -55,7 +55,7 @@ function Menu({ items }: Props) {
           aria-label="close menu"
           class="py-2"
           onClick={() => {
-            displayMenu.value = true;
+            displayMenu.value = false;
           }}
         >
           <Icon id="XMark" size={32} strokeWidth={2} />

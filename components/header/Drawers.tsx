@@ -33,9 +33,11 @@ const Aside = (
   },
 ) => (
   <div
-    class={`grid grid-rows-[auto_1fr] max-w-[100%] ${isFullWidth && "w-full"} ${
+    class={`grid grid-rows-[auto_1fr] max-w-[100%] ${
+      isFullWidth && "w-full"
+    } z-[999999] ${
       isMinicart
-        ? "h-[86.70vh] absolute right-0 top-[126px] bg-whitesmoke lg:w-[700px] z-[999]"
+        ? "h-[86.70vh] absolute right-0 top-[126px] bg-whitesmoke lg:w-[700px]"
         : "h-full bg-base-100"
     }`}
   >

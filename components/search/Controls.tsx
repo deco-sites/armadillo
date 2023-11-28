@@ -41,21 +41,24 @@ function SearchControls(
         </>
       }
     >
-      <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px]">
+      <div class="flex flex-col justify-between mb-4 p-4 sm:p-0 max-w-[95%] mx-auto">
         <div class="flex flex-row items-center sm:p-0 mb-2">
           <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
         </div>
 
-        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
-          <Button
-            class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
+        <div class="flex flex-row justify-start items-center sm:gap-4">
+          <button
+            aria-label="open filters"
+            class={displayFilter
+              ? "flex text-[#666] text-sm uppercase justify-center items-center gap-1 py-0.5 w-[170px] h-[32px] leading-[19px] border border-gray-200"
+              : "flex justify-center items-center gap-0.5 py-0.5 w-[168px] h-[32px] leading-[19px] border border-gray-200 sm:hidden"}
             onClick={() => {
               open.value = true;
             }}
           >
-            Filtrar
+            Filtros
             <Icon id="FilterList" width={16} height={16} />
-          </Button>
+          </button>
           {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
         </div>
       </div>
