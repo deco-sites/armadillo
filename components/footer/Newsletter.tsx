@@ -65,7 +65,7 @@ function Newsletter(
       <div class="flex flex-col gap-4">
         {isSubmitted.value ? <p>obrigado!</p> : (
           <form
-            class="flex items-center justify-center w-[90%] sm:w-full lg:min-w-[420px] border-b border-b-black pb-0.5 h-[46px]"
+            class="flex items-center justify-center w-[90%] sm:w-full lg:min-w-[420px] border-b border-b-black pb-0.5 h-[48px]"
             onSubmit={handleSubmit}
           >
             <div class="flex justify-between items-center w-full h-full">
@@ -77,7 +77,8 @@ function Newsletter(
 
               <button
                 type="submit"
-                class="disabled:loading pr-1.5 h-full"
+                aria-label="submit newsletter subscription"
+                class="disabled:loading pr-1.5 h-full w-12"
                 disabled={loading}
               >
                 <Icon size={24} id="ChevronRight" strokeWidth={3} />

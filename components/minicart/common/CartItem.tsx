@@ -59,7 +59,7 @@ function CartItem(
 
   return (
     <div class="flex items-center justify-between gap-2 w-[90%]">
-      <div class="flex items-center justify-center gap-1.5">
+      <div class="flex items-center justify-center gap-1.5 lg:min-w-[400px]">
         <Button
           disabled={loading || isGift}
           loading={loading}

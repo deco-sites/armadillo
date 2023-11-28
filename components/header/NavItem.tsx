@@ -76,9 +76,11 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
             <ul class="flex items-start w-full max-w-[40%] gap-6">
               {children.map((node) => (
                 <li class="pl-6 py-6">
-                  <a class="hover:underline" href={node.url}>
-                    <span>{node.name}</span>
-                  </a>
+                  {node && node.name && node.url && (
+                    <a class="hover:underline" href={node.url}>
+                      <span>{node.name}</span>
+                    </a>
+                  )}
 
                   <ul class="flex flex-col gap-0.5 mt-4 min-w-[360px]">
                     {node.children?.map((leaf) => (

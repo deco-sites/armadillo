@@ -62,9 +62,9 @@ function Navbar({ items, searchbar, logo }: {
             </a>
           )}
         </div>
-        <div class="flex-auto flex justify-center gap-x-6">
+        <ul class="flex-auto flex justify-center gap-x-6">
           {items.map((item) => <NavItem item={item} />)}
-        </div>
+        </ul>
         <div class="flex-none w-[18rem] flex items-center justify-end gap-3">
           <Searchbar searchbar={searchbar} />
 
