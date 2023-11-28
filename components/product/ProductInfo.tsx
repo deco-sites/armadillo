@@ -113,7 +113,7 @@ function ProductInfo({ page, layout }: Props) {
             </span>
           )}
 
-          <span class="text-base-300">/</span>
+          {(listPrice ?? 0) > price && <span class="text-base-300">/</span>}
 
           <span class="text-black font-semibold">
             {formatPrice(price, offers?.priceCurrency)}
