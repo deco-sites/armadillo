@@ -84,7 +84,7 @@ function ProductInfo({ page, layout }: Props) {
           )}
         </div>
         <h1>
-          <span class="font-medium text-xl capitalize">
+          <span class="text-lg capitalize font-bold">
             {layout?.name === "concat"
               ? `${isVariantOf?.name} ${name}`
               : layout?.name === "productGroup"
@@ -93,28 +93,44 @@ function ProductInfo({ page, layout }: Props) {
           </span>
         </h1>
       </div>
+      {/* Description card */}
+      <div>
+        <span class="text-sm">
+          {description && (
+            <div
+              class="mt-2"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
+          )}
+        </span>
+      </div>
       {/* Prices */}
-      <div class="mt-4">
+      <div class="mt-4 pb-2 border-b border-b-black/30">
         <div class="flex flex-row gap-2 items-center">
           {(listPrice ?? 0) > price && (
-            <span class="line-through text-base-300 text-xs">
+            <span class="line-through text-base-300">
               {formatPrice(listPrice, offers?.priceCurrency)}
             </span>
           )}
-          <span class="font-medium text-xl text-secondary">
+
+          <span class="text-base-300">/</span>
+
+          <span class="text-black font-semibold">
             {formatPrice(price, offers?.priceCurrency)}
           </span>
         </div>
-        <span class="text-sm text-base-300">
-          {installments}
-        </span>
+        {installments && (
+          <span class="text-sm text-base-300">
+            {installments.replace(".", ",")}
+          </span>
+        )}
       </div>
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">
         <ProductSelector product={product} />
       </div>
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+      <div class="mt-4 sm:mt-6 flex flex-col gap-2 pb-4 border-b border-b-black/30">
         {availability === "https://schema.org/InStock"
           ? (
             <>
@@ -125,11 +141,13 @@ function ProductInfo({ page, layout }: Props) {
                     productID={productID}
                     seller={seller}
                   />
-                  <WishlistButton
+                  {
+                    /* <WishlistButton
                     variant="full"
                     productID={productID}
                     productGroupID={productGroupID}
-                  />
+                  /> */
+                  }
                 </>
               )}
               {platform === "wake" && (
@@ -180,20 +198,6 @@ function ProductInfo({ page, layout }: Props) {
             }]}
           />
         )}
-      </div>
-      {/* Description card */}
-      <div class="mt-4 sm:mt-6">
-        <span class="text-sm">
-          {description && (
-            <details>
-              <summary class="cursor-pointer">Descrição</summary>
-              <div
-                class="ml-2 mt-2"
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
-            </details>
-          )}
-        </span>
       </div>
       {/* Analytics Event */}
       <SendEventOnView

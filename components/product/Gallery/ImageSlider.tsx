@@ -62,26 +62,28 @@ export default function GallerySlider(props: Props) {
         </Slider>
 
         <Slider.PrevButton
-          class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
+          class="no-animation absolute left-2 top-1/2"
           disabled
         >
-          <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+          <Icon size={24} id="ChevronLeft" strokeWidth={2} />
         </Slider.PrevButton>
 
         <Slider.NextButton
-          class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
+          class="no-animation absolute right-2 top-1/2 rotate-180"
           disabled={images.length < 2}
         >
-          <Icon size={24} id="ChevronRight" strokeWidth={3} />
+          <Icon size={24} id="ChevronLeft" strokeWidth={2} />
         </Slider.NextButton>
 
-        <div class="absolute top-2 right-2 bg-base-100 rounded-full">
+        {
+          /* <div class="absolute top-2 right-2 bg-base-100 rounded-full">
           <ProductImageZoom
             images={images}
             width={700}
             height={Math.trunc(700 * height / width)}
           />
-        </div>
+        </div> */
+        }
       </div>
 
       {/* Dots */}
@@ -90,10 +92,10 @@ export default function GallerySlider(props: Props) {
           <li class="carousel-item min-w-[63px] sm:min-w-[100px]">
             <Slider.Dot index={index}>
               <Image
-                style={{ aspectRatio }}
-                class="group-disabled:border-base-300 border rounded "
-                width={63}
-                height={87.5}
+                style={{ aspectRatio: "2:3" }}
+                class="group-disabled:border-base-300 border"
+                width={80}
+                height={120}
                 src={img.url!}
                 alt={img.alternateName}
               />

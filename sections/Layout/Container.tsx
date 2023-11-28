@@ -27,7 +27,7 @@ function Container({ children }: Props) {
   }
 
   return (
-    <div class="container">
+    <div class="container max-w-[90%] mx-auto relative">
       <children.Component {...children.props} />
     </div>
   );
