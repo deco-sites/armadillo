@@ -70,17 +70,17 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
       {children && children.length > 0 &&
         (
           <div
-            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start gap-6 w-screen"
+            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start gap-6 w-screen lg:min-h-[180px]"
             style={{ top: "0px", left: "0px", marginTop: "105px" }}
           >
-            <ul class="flex items-start w-full max-w-[80%] gap-6">
+            <ul class="flex items-start w-full max-w-[40%] gap-6">
               {children.map((node) => (
-                <li class="p-6">
+                <li class="pl-6 py-6">
                   <a class="hover:underline" href={node.url}>
                     <span>{node.name}</span>
                   </a>
 
-                  <ul class="flex flex-col gap-0.5 mt-4 min-w-[400px]">
+                  <ul class="flex flex-col gap-0.5 mt-4 min-w-[360px]">
                     {node.children?.map((leaf) => (
                       <li class="hover:bg-[#449349] p-1.5 w-full font-bold cursor-pointer">
                         <a href={leaf.url}>
@@ -98,7 +98,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                 <>
                   {image.url && (
                     <Image
-                      class="py-6"
+                      class="py-7"
                       src={image.url}
                       alt={image.alternateName}
                       width={image.width || 326}

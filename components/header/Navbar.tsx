@@ -51,7 +51,7 @@ function Navbar({ items, searchbar, logo }: {
 
       {/* Desktop Version */}
       <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full h-[90px] mx-auto max-w-[95%] gap-2">
-        <div class="flex-none w-[20rem]">
+        <div class="flex-none w-[14rem]">
           {logo && (
             <a
               href="/"
@@ -65,7 +65,7 @@ function Navbar({ items, searchbar, logo }: {
         <div class="flex-auto flex justify-center gap-x-6">
           {items.map((item) => <NavItem item={item} />)}
         </div>
-        <div class="flex-none w-[22rem] flex items-center justify-end gap-3">
+        <div class="flex-none w-[18rem] flex items-center justify-end gap-3">
           <Searchbar searchbar={searchbar} />
 
           {platform === "vtex" && <CartButtonVTEX />}
