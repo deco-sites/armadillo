@@ -21,23 +21,23 @@ function ValueItem(
   return (
     <a href={url} rel="nofollow" class="flex items-center gap-2">
       <div aria-checked={selected} class="checkbox" />
-      <span class="text-sm">{label}</span>
-      {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
+      <span class="font-bold text-[13px]">{label}</span>
+      {/* {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>} */}
     </a>
   );
 }
 
 function FilterValues({ key, values }: FilterToggle) {
-  const flexDirection = key === "tamanho" || key === "cor"
-    ? "flex-row"
-    : "flex-col";
+  const flexDirection = key === "Tamanho" || key === "Cor"
+    ? "grid-cols-6"
+    : "grid-cols-5";
 
   return (
-    <ul class={`flex flex-wrap gap-2 ${flexDirection}`}>
+    <ul class={`grid gap-2 ${flexDirection}`}>
       {values.map((item) => {
         const { url, selected, value, quantity } = item;
 
-        if (key === "cor" || key === "tamanho") {
+        if (key === "Cor" || key === "Tamanho") {
           return (
             <a href={url} rel="nofollow">
               <Avatar
@@ -66,13 +66,22 @@ function FilterValues({ key, values }: FilterToggle) {
 }
 
 function Filters({ filters }: Props) {
+  const excludedKeys = ["Brands", "PriceRanges", "Categories", "Departments"];
+
   return (
-    <ul class="flex flex-col gap-6 p-4">
+    <ul class="flex flex-wrap flex-row gap-6 py-3">
       {filters
         .filter(isToggle)
+        .filter((item) => !excludedKeys.includes(item.key))
         .map((filter) => (
-          <li class="flex flex-col gap-4">
-            <span>{filter.label}</span>
+          <li
+            class={`${
+              filter.label === "Estilo" ? "flex-col" : "flex-row"
+            } flex items-start justify-start gap-4`}
+          >
+            <span class="text-[#666] font-bold text-xs uppercase">
+              {filter.label}:
+            </span>
             <FilterValues {...filter} />
           </li>
         ))}

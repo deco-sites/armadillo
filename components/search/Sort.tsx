@@ -22,36 +22,40 @@ export type Props = Pick<ProductListingPage, "sortOptions">;
 
 // TODO: move this to the loader
 const portugueseMappings = {
-  "relevance:desc": "Relevância",
+  "relevance:desc": "Maior Relevância",
   "price:desc": "Maior Preço",
   "price:asc": "Menor Preço",
-  "orders:desc": "Mais vendidos",
+  "orders:desc": "Mais Vendidos",
   "name:desc": "Nome - de Z a A",
   "name:asc": "Nome - de A a Z",
-  // "release:desc": "Relevância - Decrescente",
-  "discount:desc": "Maior desconto",
+  "release:desc": "Menor Relevância",
+  "discount:desc": "Maior Desconto",
 };
 
 function Sort({ sortOptions }: Props) {
   const sort = useSort();
 
   return (
-    <select
-      id="sort"
-      name="sort"
-      onInput={applySort}
-      class="w-min h-[36px] px-1 rounded m-2 text-base-content cursor-pointer outline-none"
-    >
-      {sortOptions.map(({ value, label }) => ({
-        value,
-        label: portugueseMappings[label as keyof typeof portugueseMappings] ??
-          label,
-      })).filter(({ label }) => label).map(({ value, label }) => (
-        <option key={value} value={value} selected={value === sort}>
-          <span class="text-sm">{label}</span>
-        </option>
-      ))}
-    </select>
+    <div class="flex flex-col gap-4 h-[95px]">
+      <span class="text-[#666] font-bold text-xs uppercase">Ordenar por:</span>
+
+      <select
+        id="sort"
+        name="sort"
+        onInput={applySort}
+        class="flex text-[#666] text-sm uppercase justify-center items-center py-0.5 w-[170px] h-[32px] leading-[19px] border border-gray-200"
+      >
+        {sortOptions.map(({ value, label }) => ({
+          value,
+          label: portugueseMappings[label as keyof typeof portugueseMappings] ??
+            label,
+        })).filter(({ label }) => label).map(({ value, label }) => (
+          <option key={value} value={value} selected={value === sort}>
+            <span class="text-sm">{label}</span>
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 

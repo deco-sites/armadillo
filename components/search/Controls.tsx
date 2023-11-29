@@ -15,21 +15,15 @@ function SearchControls(
 ) {
   return (
     <div class="flex flex-col justify-between mb-4 p-4 sm:p-0 max-w-[95%] mx-auto">
-      <div class="flex flex-row items-center sm:p-0 mb-2">
+      <div class="flex flex-row items-center mb-2">
         <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
       </div>
 
-      {
-        /* <div class="flex-grow overflow-auto">
-        <Filters filters={filters} />
-      </div> */
-      }
+      <div class="flex flex-col md:flex-row justify-start md:items-center sm:gap-4">
+        <div class="collapse w-full cursor-default focus:outline-none">
+          <input type="checkbox" class="peer w-[195px]" />
 
-      <div class="flex flex-row justify-start items-center sm:gap-4">
-        <div class="collapse">
-          <input type="radio" name="my-accordion-2" checked={false} />
-
-          <div class="collapse-title">
+          <div class="collapse-title w-[195px] !px-0">
             <button
               aria-label="open filters"
               class={displayFilter
@@ -40,10 +34,20 @@ function SearchControls(
               <Icon id="FilterList" width={16} height={16} />
             </button>
           </div>
+
           <div class="collapse-content">
-            <p>hello</p>
+            <div class="flex-grow overflow-auto">
+              <Filters filters={filters} />
+            </div>
           </div>
         </div>
+
+        <button
+          aria-label="remove filters"
+          class="flex text-[#666] text-sm lowercase justify-center items-center py-0.5 w-[170px] h-[32px] leading-[19px] border border-gray-200"
+        >
+          Remover filtros
+        </button>
 
         {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
       </div>
