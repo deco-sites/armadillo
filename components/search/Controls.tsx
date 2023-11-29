@@ -13,6 +13,14 @@ export type Props =
 function SearchControls(
   { filters, breadcrumb, displayFilter, sortOptions }: Props,
 ) {
+  const removeSort = () => {
+    const currentUrl = new URL(window?.location?.href);
+
+    currentUrl.search = "";
+
+    window.location.href = currentUrl.toString();
+  };
+
   return (
     <div class="flex flex-col justify-between mb-4 p-4 sm:p-0 max-w-[95%] mx-auto">
       <div class="flex flex-row items-center mb-2">
@@ -43,6 +51,7 @@ function SearchControls(
         </div>
 
         <button
+          onClick={removeSort}
           aria-label="remove filters"
           class="flex text-[#666] text-sm lowercase justify-center items-center py-0.5 w-[170px] h-[32px] leading-[19px] border border-gray-200"
         >
