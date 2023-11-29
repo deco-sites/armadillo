@@ -22,12 +22,12 @@ function SearchControls(
   };
 
   return (
-    <div class="flex flex-col justify-between mb-4 p-4 sm:p-0 max-w-[95%] mx-auto">
+    <div class="flex flex-col justify-between mb-4 py-4 sm:p-0 lg:max-w-[95%] mx-auto">
       <div class="flex flex-row items-center mb-2">
         <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
       </div>
 
-      <div class="flex flex-col md:flex-row justify-start md:items-center sm:gap-4">
+      <div class="flex flex-col md:flex-row justify-start md:items-center gap-2 sm:gap-4">
         <div class="collapse w-full cursor-default focus:outline-none">
           <input type="checkbox" class="peer w-[195px]" />
 

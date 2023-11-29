@@ -30,7 +30,7 @@ function ValueItem(
 function FilterValues({ key, values }: FilterToggle) {
   const flexDirection = key === "Tamanho" || key === "Cor"
     ? "grid-cols-6"
-    : "grid-cols-5";
+    : "grid-cols-2 lg:grid-cols-5";
 
   return (
     <ul class={`grid gap-2 ${flexDirection}`}>
