@@ -49,19 +49,20 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
 
   return (
     <li class="group flex items-center">
-      <a href={url} class="flex items-center justify-center gap-0.5 px-4 py-3">
+      <a href={url} class="flex items-center justify-center gap-1 px-4 py-3">
         <span
           class={`group-hover:underline text-xs font-bold ${
-            name && ["bazar"].includes(name.toLowerCase()) && "text-[#449349]"
+            name && name.includes("BAZAR") && "text-[#449349]"
           }`}
         >
           {name}
         </span>
         {children && children.length > 0 && (
-          <Icon
-            id="ChevronDown"
-            strokeWidth={1}
-            size={12}
+          <Image
+            src="https://armadillo.vteximg.com.br/arquivos/setamenubaixo.png?v=637078892555130000"
+            loading="lazy"
+            width={10.5}
+            height={8}
             class="group-hover:rotate-180 transition-transform duration-150"
           />
         )}

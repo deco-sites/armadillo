@@ -1,4 +1,5 @@
 import Button from "$store/components/ui/Button.tsx";
+import Image from "apps/website/components/Image.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
@@ -25,22 +26,30 @@ function CartButton({ loading, currency, total, items }: Props) {
 
   return (
     <div class="indicator">
-      <span
+      {
+        /* <span
         class={`indicator-item badge badge-secondary badge-sm ${
           totalItems === 0 ? "hidden" : ""
         }`}
       >
         {totalItems > 9 ? "9+" : totalItems}
-      </span>
+      </span> */
+      }
 
       <Button
-        class="btn-circle btn-sm btn-ghost"
+        class="btn-circle btn-sm btn-ghost hover:bg-transparent"
         aria-label="open cart"
         data-deco={displayCart.value && "open-cart"}
         loading={loading}
         onClick={onClick}
       >
-        <Icon id="ShoppingCart" size={24} strokeWidth={2} />
+        <Image
+          src="https://armadillo.vteximg.com.br/arquivos/backpack.png?v=637180013501100000"
+          alt="Bag Icon"
+          width={24}
+          height={24}
+          loading="eager"
+        />
       </Button>
     </div>
   );

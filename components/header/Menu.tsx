@@ -13,7 +13,7 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
       <input type="checkbox" />
       <div
         class={`collapse-title ${
-          item.name && ["bazar"].includes(item.name.toLowerCase()) &&
+          item.name && item.name.includes("BAZAR") &&
           "text-[#449349]"
         }`}
       >
@@ -95,7 +95,13 @@ function Menu({ items }: Props) {
           loading="lazy"
         />
         <p>Novidades</p>
-        <p class="text-gray-400 text-sm">Confira</p>
+        <a
+          href="/roupas/verao-24?O=OrderByReleaseDateDESC"
+          aria-label="confira"
+          class="text-gray-400 text-sm"
+        >
+          Confira
+        </a>
       </div>
     </div>
   );
