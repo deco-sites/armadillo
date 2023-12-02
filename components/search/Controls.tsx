@@ -43,7 +43,7 @@ function SearchControls(
             </button>
           </div>
 
-          <div class="collapse-content">
+          <div class="collapse-content p-0">
             <div class="flex-grow overflow-auto">
               <Filters filters={filters} />
             </div>

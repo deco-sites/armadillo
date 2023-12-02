@@ -21,7 +21,7 @@ function ValueItem(
   return (
     <a href={url} rel="nofollow" class="flex items-center gap-2">
       <div aria-checked={selected} class="checkbox" />
-      <span class="font-bold text-[13px]">{label}</span>
+      <span class="font-semibold text-[13px]">{label}</span>
       {/* {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>} */}
     </a>
   );
@@ -30,7 +30,7 @@ function ValueItem(
 function FilterValues({ key, values }: FilterToggle) {
   const flexDirection = key === "Tamanho" || key === "Cor"
     ? "grid-cols-6"
-    : "grid-cols-2 lg:grid-cols-5";
+    : "grid-cols-2";
 
   return (
     <ul class={`grid gap-2 ${flexDirection}`}>
@@ -69,10 +69,20 @@ function Filters({ filters }: Props) {
   const excludedKeys = ["Brands", "PriceRanges", "Categories", "Departments"];
 
   return (
-    <ul class="flex flex-wrap flex-row gap-6 py-3">
+    <ul class="flex flex-wrap flex-row gap-6 lg:gap-32 py-3">
       {filters
         .filter(isToggle)
         .filter((item) => !excludedKeys.includes(item.key))
+        .sort((a, b) => {
+          const order: Record<string, number> = {
+            Estilo: 1,
+            Cor: 2,
+            Tamanho: 3,
+          };
+
+          return order[a.label as keyof typeof order] -
+            order[b.label as keyof typeof order];
+        })
         .map((filter) => (
           <li
             class={`${
