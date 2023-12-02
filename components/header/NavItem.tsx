@@ -61,6 +61,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
           <Image
             src="https://armadillo.vteximg.com.br/arquivos/setamenubaixo.png?v=637078892555130000"
             loading="lazy"
+            alt="arrow image"
             width={10.5}
             height={8}
             class="group-hover:rotate-180 transition-transform duration-150"
