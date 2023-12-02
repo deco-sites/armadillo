@@ -121,7 +121,7 @@ function ProductInfo({ page, layout }: Props) {
         </div>
         {installments && (
           <span class="text-sm text-base-300">
-            {installments.replace(".", ",")}
+            ou {installments.replace(".", ",")}
           </span>
         )}
       </div>

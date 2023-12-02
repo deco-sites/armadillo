@@ -36,9 +36,9 @@ export default function GallerySlider(props: Props) {
   const aspectRatio = `${width} / ${height}`;
 
   return (
-    <div id={id} class="grid grid-flow-row sm:grid-flow-col">
+    <div id={id} class="grid grid-flow-row md:grid-flow-col">
       {/* Image Slider */}
-      <div class="relative order-1 sm:order-2">
+      <div class="relative order-1 md:order-2">
         <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
           {images.map((img, index) => (
             <Slider.Item
@@ -87,9 +87,9 @@ export default function GallerySlider(props: Props) {
       </div>
 
       {/* Dots */}
-      <ul class="carousel carousel-center gap-1 px-4 sm:px-0 sm:flex-col order-2 sm:order-1">
+      <ul class="carousel carousel-center gap-1 px-4 sm:px-0 md:flex-col order-2 sm:order-1">
         {images.map((img, index) => (
-          <li class="carousel-item min-w-[63px] sm:min-w-[100px]">
+          <li class="carousel-item min-w-[63px] md:min-w-[100px]">
             <Slider.Dot index={index}>
               <Image
                 style={{ aspectRatio: "2:3" }}

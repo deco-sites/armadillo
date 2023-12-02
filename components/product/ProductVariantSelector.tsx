@@ -16,7 +16,7 @@ function VariantSelector({ product }: Props) {
       {Object.keys(possibilities)?.filter((item) =>
         !item.includes("Emabalgem Presente")
       )?.map((name) => (
-        <li class="flex flex-col lg:flex-row items-center gap-2">
+        <li class="flex flex-col lg:flex-row lg:items-center gap-2">
           <span class="text-sm lg:min-w-[120px] uppercase">{name}</span>
           <ul class="flex flex-row gap-3">
             {Object.entries(possibilities[name]).map(([value, link]) => (
