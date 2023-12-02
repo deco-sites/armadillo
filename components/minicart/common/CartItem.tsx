@@ -1,6 +1,7 @@
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
+import Avatar from "$store/components/product/Avatar.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
@@ -57,9 +58,28 @@ function CartItem(
     [],
   );
 
+  function extractSizeAndColor(inputString: string) {
+    const matches = inputString.match(/(\d+|[a-zA-Z]+)/g);
+    let size = "";
+    let color = "";
+
+    if (matches && matches.length >= 2) {
+      size = matches[matches.length - 1];
+      color = matches[matches.length - 2];
+    }
+
+    return { size, color };
+  }
+
+  const { color, size } = extractSizeAndColor(name);
+  console.log(color);
+  const formattedName = size && color
+    ? name.replace(new RegExp(`\\b${size}\\b|\\b${color}\\b`, "gi"), "").trim()
+    : name;
+
   return (
     <div class="flex items-center justify-between gap-2 w-[90%]">
-      <div class="flex items-center justify-center gap-1.5 lg:min-w-[400px]">
+      <div class="flex items-center gap-1.5 lg:min-w-[400px]">
         <Button
           disabled={loading || isGift}
           loading={loading}
@@ -75,7 +95,7 @@ function CartItem(
             });
           })}
         >
-          <Icon id="XMark" size={24} strokeWidth={1} />
+          <Icon id="XMark" size={16} strokeWidth={2} />
         </Button>
 
         <Image
@@ -88,7 +108,18 @@ function CartItem(
         />
 
         <div class="flex flex-col gap-2">
-          <span>{name}</span>
+          <span>{formattedName}</span>
+
+          <div class="flex items-center gap-2.5">
+            <Avatar
+              content={color}
+              variant={"default"}
+            />
+
+            <span class="flex items-center justify-center text-sm border border-[#ccc] p-2 w-[30px] h-[30px]">
+              {size}
+            </span>
+          </div>
         </div>
       </div>
 
