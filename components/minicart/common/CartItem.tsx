@@ -72,7 +72,7 @@ function CartItem(
   }
 
   const { color, size } = extractSizeAndColor(name);
-  console.log(color);
+
   const formattedName = size && color
     ? name.replace(new RegExp(`\\b${size}\\b|\\b${color}\\b`, "gi"), "").trim()
     : name;
