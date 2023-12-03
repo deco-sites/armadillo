@@ -42,8 +42,9 @@ import * as $$$$$$34 from "./sections/Product/ProductShelfTabbed.tsx";
 import * as $$$$$$35 from "./sections/Product/SearchResult.tsx";
 import * as $$$$$$36 from "./sections/Product/Wishlist.tsx";
 import * as $$$$$$37 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$38 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$39 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$38 from "./sections/Social/InstagramWidget.tsx";
+import * as $$$$$$39 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$40 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -91,8 +92,9 @@ const manifest = {
     "deco-sites/armadillo/sections/Product/SearchResult.tsx": $$$$$$35,
     "deco-sites/armadillo/sections/Product/Wishlist.tsx": $$$$$$36,
     "deco-sites/armadillo/sections/Social/InstagramPosts.tsx": $$$$$$37,
-    "deco-sites/armadillo/sections/Social/WhatsApp.tsx": $$$$$$38,
-    "deco-sites/armadillo/sections/Theme/Theme.tsx": $$$$$$39,
+    "deco-sites/armadillo/sections/Social/InstagramWidget.tsx": $$$$$$38,
+    "deco-sites/armadillo/sections/Social/WhatsApp.tsx": $$$$$$39,
+    "deco-sites/armadillo/sections/Theme/Theme.tsx": $$$$$$40,
   },
   "apps": {
     "deco-sites/armadillo/apps/decohub.ts": $$$$$$$$$$$0,
