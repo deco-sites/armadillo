@@ -99,8 +99,10 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
 
             <div
               class={`${
-                images && images.length > 1 ? "grid-cols-3" : "grid-cols-1"
-              } grid justify-between w-full h-full items-center gap-4 max-w-[70%]`}
+                images && images.length > 1
+                  ? "grid grid-cols-3"
+                  : "flex flex-wrap"
+              } justify-between w-full h-full items-center gap-4 max-w-[70%]`}
             >
               {images && images?.map((image) => (
                 <>
