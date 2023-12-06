@@ -110,10 +110,10 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                     <Image
                       class={`${
                         images.length === 1 && "max-w-[1280px]"
-                      } w-full py-7 object-cover`}
+                      } w-full py-7`}
                       src={image.url}
                       alt={image.alternateName}
-                      width={image.width || images.length > 1 ? 420 : 1280}
+                      width={image.width || 420}
                       height={image.height || 510}
                       loading="lazy"
                     />
