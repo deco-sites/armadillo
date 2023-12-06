@@ -36,27 +36,32 @@ const colors: Record<string, string> = {
   "active": "bg-[#449349] text-white ring-neutral-focus",
   "disabled": "bg-neutral-content text-neutral",
   "default": "hover:bg-[#449349] hover:text-white",
+  "defaultPLP": "border border-black/10 hover:bg-black hover:text-white",
+  "activePLP": "border border-black hover:bg-black hover:text-white",
 };
 
 interface Props {
-  variant?: "active" | "disabled" | "default";
+  variant?: "active" | "disabled" | "default" | "activePLP" | "defaultPLP";
   content: string;
+  isPLP?: boolean;
 }
 
 const variants = {
   active: "ring ring-1 ring-offset-base-100 ring-offset-2",
+  activePLP: "",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
   default: "",
+  defaultPLP: "",
 };
 
-function Avatar({ content, variant = "default" }: Props) {
+function Avatar({ content, variant = "default", isPLP = false }: Props) {
   return (
     <div class="avatar placeholder text-xs">
       <div
-        class={`rounded-none w-8 h-8 ${colors[content] ?? colors[variant]} ${
-          variants[variant]
-        }`}
+        class={`rounded-none w-8 h-8 ${isPLP && "border border-[#c9cdd5]"} ${
+          colors[content] ?? colors[variant]
+        } ${variants[variant]}`}
       >
         <span class="uppercase">
           {colors[content] ? "" : content.substring(0, 2)}

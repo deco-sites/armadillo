@@ -36,14 +36,16 @@ function Sort({ sortOptions }: Props) {
   const sort = useSort();
 
   return (
-    <div class="flex flex-col gap-4 h-[95px]">
-      <span class="text-[#666] font-bold text-xs uppercase">Ordenar por:</span>
+    <div class="flex flex-col gap-4 h-[95px] w-full">
+      <span class="text-[#999] font-semibold text-xs uppercase">
+        Ordenar por:
+      </span>
 
       <select
         id="sort"
         name="sort"
         onInput={applySort}
-        class="flex text-[#666] text-sm uppercase justify-center items-center py-0.5 w-[170px] h-[32px] leading-[19px] border border-gray-200"
+        class="flex text-[#666] text-sm uppercase justify-center items-center py-0.5 w-full h-[32px] leading-[19px] border border-gray-200"
       >
         {sortOptions.map(({ value, label }) => ({
           value,

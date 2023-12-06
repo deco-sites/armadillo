@@ -1,3 +1,4 @@
+import Sort from "$store/components/search/Sort.tsx";
 import Avatar from "$store/components/product/Avatar.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import type {
@@ -10,6 +11,7 @@ import { parseRange } from "apps/commerce/utils/filters.ts";
 
 interface Props {
   filters: ProductListingPage["filters"];
+  sortOptions?: ProductListingPage["sortOptions"];
 }
 
 const isToggle = (filter: Filter): filter is FilterToggle =>
@@ -20,8 +22,11 @@ function ValueItem(
 ) {
   return (
     <a href={url} rel="nofollow" class="flex items-center gap-2">
-      <div aria-checked={selected} class="checkbox" />
-      <span class="font-semibold text-[13px]">{label}</span>
+      <div
+        aria-checked={selected}
+        class="checkbox rounded-none border-black w-[15px] h-[15px]"
+      />
+      <span class="text-black text-[13px]">{label}</span>
       {/* {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>} */}
     </a>
   );
@@ -29,11 +34,15 @@ function ValueItem(
 
 function FilterValues({ key, values }: FilterToggle) {
   const flexDirection = key === "Tamanho" || key === "Cor"
-    ? "grid-cols-6"
+    ? `grid-cols-5 xl:grid-cols-6`
     : "grid-cols-2";
 
   return (
-    <ul class={`grid gap-2 ${flexDirection}`}>
+    <ul
+      class={`${
+        key === "Estilo" ? "w-full justify-between gap-x-2 gap-y-1" : "gap-2"
+      } grid ${flexDirection}`}
+    >
       {values.map((item) => {
         const { url, selected, value, quantity } = item;
 
@@ -42,7 +51,8 @@ function FilterValues({ key, values }: FilterToggle) {
             <a href={url} rel="nofollow">
               <Avatar
                 content={value}
-                variant={selected ? "active" : "default"}
+                variant={selected ? "activePLP" : "defaultPLP"}
+                isPLP={true}
               />
             </a>
           );
@@ -65,11 +75,11 @@ function FilterValues({ key, values }: FilterToggle) {
   );
 }
 
-function Filters({ filters }: Props) {
+function Filters({ filters, sortOptions }: Props) {
   const excludedKeys = ["Brands", "PriceRanges", "Categories", "Departments"];
 
   return (
-    <ul class="flex flex-wrap flex-row gap-6 lg:gap-32 py-3">
+    <ul class="grid sm:grid-cols-2 md:grid-cols-4 w-full gap-6 justify-between py-3">
       {filters
         .filter(isToggle)
         .filter((item) => !excludedKeys.includes(item.key))
@@ -89,12 +99,15 @@ function Filters({ filters }: Props) {
               filter.label === "Estilo" ? "flex-col" : "flex-row"
             } flex items-start justify-start gap-4`}
           >
-            <span class="text-[#666] font-bold text-xs uppercase">
+            <span class="text-[#999] font-semibold text-xs uppercase">
               {filter.label}:
             </span>
             <FilterValues {...filter} />
           </li>
         ))}
+      {sortOptions && sortOptions.length > 0 && (
+        <Sort sortOptions={sortOptions} />
+      )}
     </ul>
   );
 }
