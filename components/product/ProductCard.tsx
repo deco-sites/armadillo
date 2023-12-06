@@ -9,6 +9,10 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 
+interface SizeOrder {
+  [key: string]: number;
+}
+
 export interface Layout {
   basics?: {
     contentAlignment?: "Left" | "Center";
@@ -85,15 +89,44 @@ function ProductCard(
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
-  const skuSelector = variants.map(([value, link]) => (
-    <li>
-      <Avatar
-        variant={link === url ? "active" : link ? "default" : "disabled"}
-        content={value}
-        link={link || ""}
-      />
-    </li>
-  ));
+
+  const sizeOrder: SizeOrder = {
+    "UN": 0,
+    "P": 1,
+    "M": 2,
+    "G": 3,
+    "GG": 4,
+    "3G": 5,
+  };
+
+  const skuSelector = variants
+    .slice()
+    .sort(([valueA], [valueB]) => {
+      const numA = parseFloat(valueA);
+      const numB = parseFloat(valueB);
+
+      if (!isNaN(numA) && !isNaN(numB)) {
+        return numA - numB;
+      } else {
+        const orderA = sizeOrder[valueA] !== undefined
+          ? sizeOrder[valueA]
+          : Number.MAX_SAFE_INTEGER;
+        const orderB = sizeOrder[valueB] !== undefined
+          ? sizeOrder[valueB]
+          : Number.MAX_SAFE_INTEGER;
+
+        return orderA - orderB;
+      }
+    })
+    .map(([value, link]) => (
+      <li key={value}>
+        <Avatar
+          variant={link === url ? "active" : link ? "default" : "disabled"}
+          content={value}
+          link={link || ""}
+        />
+      </li>
+    ));
   const cta = (
     <a
       href={url && relative(url)}

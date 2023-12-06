@@ -75,16 +75,16 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
             class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start gap-6 w-screen lg:min-h-[180px] pl-10"
             style={{ top: "0px", left: "0px", marginTop: "98px" }}
           >
-            <ul class="flex items-start w-full max-w-[40%] gap-6">
+            <ul class="flex items-start w-full max-w-[25%] gap-6">
               {children.map((node) => (
-                <li class="pl-6 py-6">
+                <li class="py-6">
                   {node && node.name && node.url && (
                     <a class="hover:underline" href={node.url}>
                       <span>{node.name}</span>
                     </a>
                   )}
 
-                  <ul class="flex flex-col gap-0.5 mt-4 min-w-[360px]">
+                  <ul class="flex flex-col gap-0.5 mt-4 min-w-[360px] pl-4">
                     {node.children?.map((leaf) => (
                       <li class="flex hover:bg-[#449349] p-1.5 w-full font-bold cursor-pointer">
                         <a href={leaf.url} class="flex w-full">
@@ -97,16 +97,22 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
               ))}
             </ul>
 
-            <div class="flex flex-wrap w-full h-full items-center gap-4">
+            <div
+              class={`${
+                images && images.length > 1 ? "grid-cols-3" : "grid-cols-1"
+              } grid justify-between w-full h-full items-center gap-4 max-w-[70%]`}
+            >
               {images && images?.map((image) => (
                 <>
                   {image.url && (
                     <Image
-                      class="py-7"
+                      class={`${
+                        images.length === 1 && "max-w-[1280px]"
+                      } w-full py-7 object-cover`}
                       src={image.url}
                       alt={image.alternateName}
-                      width={image.width || 326}
-                      height={image.height || 340}
+                      width={image.width || images.length > 1 ? 420 : 1280}
+                      height={image.height || 510}
                       loading="lazy"
                     />
                   )}
