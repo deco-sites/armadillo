@@ -30,7 +30,7 @@ function SearchControls(
         <div class="collapse w-full cursor-default focus:outline-none rounded-none border-none">
           <input
             type="checkbox"
-            class="peer w-[178px] h-[32px] absolute !p-0 rounded-none border-none"
+            class="peer w-[178px] h-[32px] relative lg:absolute !p-0 rounded-none border-none"
           />
 
           <div class="flex gap-2 w-full">
