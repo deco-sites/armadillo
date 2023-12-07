@@ -1,5 +1,4 @@
 import { SendEventOnView } from "$store/components/Analytics.tsx";
-import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import AddToCartButtonLinx from "$store/islands/AddToCartButton/linx.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
@@ -71,20 +70,16 @@ function ProductInfo({ page, layout }: Props) {
     listPrice,
   });
 
+  const code =
+    product?.additionalProperty?.find((item) => item.name === "RefId")?.value ||
+    null;
+
   return (
-    <div class="flex flex-col" id={id}>
-      <Breadcrumb itemListElement={breadcrumb.itemListElement} />
+    <div class="flex flex-col xl:max-w-[60%] xl:ml-auto sm:pt-10" id={id}>
       {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
-        <div>
-          {gtin && (
-            <span class="text-sm text-base-300">
-              Cod. {gtin}
-            </span>
-          )}
-        </div>
+      <div class="flex items-center gap-1 mt-4 sm:mt-8">
         <h1>
-          <span class="text-lg capitalize font-bold">
+          <span class="leading-4 capitalize font-semibold text-black">
             {layout?.name === "concat"
               ? `${isVariantOf?.name} ${name}`
               : layout?.name === "productGroup"
@@ -92,10 +87,18 @@ function ProductInfo({ page, layout }: Props) {
               : name}
           </span>
         </h1>
+
+        <div>
+          {code && (
+            <span class="text-xs font-normal text-[#808080]">
+              - {code.substring(0, 5)}
+            </span>
+          )}
+        </div>
       </div>
       {/* Description card */}
       <div>
-        <span class="text-sm">
+        <span class="text-sm font-light text-[#666]">
           {description && (
             <div
               class="mt-2"
@@ -120,7 +123,7 @@ function ProductInfo({ page, layout }: Props) {
           </span>
         </div>
         {installments && (
-          <span class="text-sm text-base-300">
+          <span class="text-sm text-[#666]">
             ou {installments.replace(".", ",")}
           </span>
         )}

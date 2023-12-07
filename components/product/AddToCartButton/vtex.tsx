@@ -22,7 +22,7 @@ function AddToCartButton({ seller, productID, eventParams }: Props) {
     });
 
   return (
-    <div class="flex flex-col lg:flex-row items-center gap-2 w-full">
+    <div class="flex flex-col lg:flex-row gap-2 w-full">
       <span class="text-sm lg:min-w-[120px] uppercase">Quantidade</span>
 
       <div class="flex items-center justify-between w-full">
