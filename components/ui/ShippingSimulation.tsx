@@ -12,7 +12,7 @@ export interface Props {
 const formatShippingEstimate = (estimate: string) => {
   const [, time, type] = estimate.split(/(\d+)/);
 
-  if (type === "bd") return `${time} dias úteis`;
+  if (type === "bd") return `${time} dias`;
   if (type === "d") return `${time} dias`;
   if (type === "h") return `${time} horas`;
 };
@@ -43,26 +43,30 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px]">
-      {methods.map((method) => (
-        <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
-          <span class="text-button text-center">
-            Entrega {method.name}
-          </span>
-          <span class="text-button">
-            até {formatShippingEstimate(method.shippingEstimate)}
-          </span>
-          <span class="text-base font-semibold text-right">
-            {method.price === 0 ? "Grátis" : (
-              formatPrice(method.price / 100, currencyCode, locale)
-            )}
-          </span>
-        </li>
-      ))}
-      <span class="text-base-300">
-        Os prazos de entrega começam a contar a partir da confirmação do
-        pagamento e podem variar de acordo com a quantidade de produtos na
-        sacola.
+    <ul class="flex flex-col gap-3 pt-4">
+      <span class="text-[13px] font-bold text-black">
+        Consulte o prazo e o valor do frete
+      </span>
+
+      <div class="flex flex-col gap-1">
+        {methods.map((method) => (
+          <li class="flex flex-col justify-start items-start gap-0">
+            <span class="text-[13px] text-black font-normal">
+              Frete {method.name} -{" "}
+              {formatShippingEstimate(method.shippingEstimate)}
+            </span>
+
+            <span class="text-[13px] font-normal text-[#449349]">
+              {method.price === 0 ? "Grátis" : (
+                formatPrice(method.price / 100, currencyCode, locale)
+              )}
+            </span>
+          </li>
+        ))}
+      </div>
+
+      <span class="text-[#808080] font-bold text-xs">
+        Confira opções de retirada em loja na área de pagamento
       </span>
     </ul>
   );
@@ -94,9 +98,9 @@ function ShippingSimulation({ items }: Props) {
   }, []);
 
   return (
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col">
       <div class="flex flex-col">
-        <span>Frete</span>
+        <span class="text-[13px] text-[#808080] font-normal">Frete</span>
       </div>
 
       <form
@@ -109,7 +113,7 @@ function ShippingSimulation({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="border border-gray bg-ice-cube text-sm text-black w-full h-10 max-w-[195px] pl-1"
+          class="border border-[#767676] bg-ice-cube text-sm text-black w-full h-8 max-w-[195px] pl-1"
           placeholder=""
           aria-label="shipping simulation"
           value={postalCode.value}
@@ -122,14 +126,15 @@ function ShippingSimulation({ items }: Props) {
         <Button
           type="submit"
           loading={loading.value}
-          class="max-w-[124px] uppercase flex items-center justify-center min-h-[40px] max-h-[40px] rounded-none border border-dark-gray bg-transparent hover:bg-dark-gray hover:text-white w-full text-sm duration-200 transition-colors font-semibold"
+          class="max-w-[73px] uppercase flex items-center justify-center min-h-8 max-h-8 rounded-none border border-black bg-[#ddd] hover:bg-[#ddd] w-full text-[#666] text-xs font-medium"
         >
           Calcular
         </Button>
       </form>
 
-      <div class="flex flex-col pt-1">
+      <div class="flex flex-col pt-4">
         <a
+          class="text-[13px] text-[#808080] font-normal"
           target="_blank"
           href="http://www.buscacep.correios.com.br/sistemas/buscacep/"
         >
