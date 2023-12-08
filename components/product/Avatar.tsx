@@ -4,6 +4,7 @@
  */
 
 const colors: Record<string, string> = {
+  "White": "bg-[#fff]",
   "Amarelo": "bg-[#e6c590]",
   "Areia": "bg-[#ede2ca]",
   "Azul": "bg-[#315794]",
@@ -20,9 +21,9 @@ const colors: Record<string, string> = {
   "Chumbo": "bg-[#37373e]",
   "Cinza": "bg-[#838587]",
   "Goiaba": "bg-[#b42e58]",
-  "Branco": "bg-[#FFFFFF] border border-[#E0E0E0] ring-[#000]",
-  "Off%20White": "bg-[#FFFFFF] border border-[#E0E0E0] ring-[#000]",
-  "Grafite": "bg-[#FFFFFF] border border-[#E0E0E0] ring-[#000]",
+  "Branco": "bg-[#FFFFFF] border border-[#E0E0E0]",
+  "Off%20White": "bg-[#FFFFFF] border border-[#E0E0E0]",
+  "Grafite": "bg-[#FFFFFF] border border-[#E0E0E0]",
   "Kraft": "bg-[#9c7d45]",
   "Laranja": "bg-[#ff5b00]",
   "Marrom": "bg-[#5a4535]",
@@ -33,7 +34,7 @@ const colors: Record<string, string> = {
   "Vermelho": "bg-[#a20100]",
 
   // Color variants - only applied when no color as content is passed
-  "active": "bg-[#449349] text-white ring-neutral-focus",
+  "active": "bg-[#449349] text-white",
   "disabled": "bg-neutral-content text-neutral",
   "default": "hover:bg-[#449349] hover:text-white",
   "defaultPLP": "border border-black/10 hover:bg-black hover:text-white",
@@ -59,7 +60,9 @@ function Avatar({ content, variant = "default", isPLP = false }: Props) {
   return (
     <div class="avatar placeholder text-xs">
       <div
-        class={`rounded-none w-8 h-8 ${isPLP && "border border-[#c9cdd5]"} ${
+        class={`${
+          !colors[content] ? "ring-[#449349]" : "ring-black"
+        } rounded-none w-8 h-8 ${isPLP && "border border-[#c9cdd5]"} ${
           colors[content] ?? colors[variant]
         } ${variants[variant]}`}
       >

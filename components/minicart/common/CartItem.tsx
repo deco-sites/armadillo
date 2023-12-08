@@ -117,7 +117,7 @@ function CartItem(
             />
 
             <span class="flex items-center justify-center text-sm border border-[#ccc] p-2 w-[30px] h-[30px]">
-              {size}
+              {size.substring(0, 2)}
             </span>
           </div>
         </div>

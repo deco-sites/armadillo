@@ -10,23 +10,24 @@ interface Props {
 const QUANTITY_MAX_VALUE = 100;
 
 function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
-  const decrement = () => onChange?.(Math.max(0, quantity - 1));
+  const decrement = () => onChange?.(Math.max(1, quantity - 1));
 
   const increment = () =>
     onChange?.(Math.min(quantity + 1, QUANTITY_MAX_VALUE));
 
   return (
-    <div class="join border rounded-none w-min">
+    <div class="flex items-center w-min gap-2">
       <Button
-        class="btn-square btn-ghost join-item"
+        class="join-item hover:bg-transparent font-normal text-xl text-[#424542]"
         onClick={decrement}
         disabled={disabled}
         loading={loading}
+        hasBtnClass={false}
       >
         -
       </Button>
       <input
-        class="input text-center join-item [appearance:textfield]"
+        class="flex items-center justify-center text-center w-[35px] h-[35px] join-item [appearance:textfield] border border-[#999] rounded-none bg-[#f2f2f2]"
         type="number"
         inputMode="numeric"
         pattern="[0-9]*"
@@ -39,10 +40,11 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
         size={3}
       />
       <Button
-        class="btn-square btn-ghost join-item"
+        class="join-item hover:bg-transparent font-normal text-xl text-[#424542]"
         onClick={increment}
         disabled={disabled}
         loading={loading}
+        hasBtnClass={false}
       >
         +
       </Button>

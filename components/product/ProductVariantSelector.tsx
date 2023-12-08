@@ -12,7 +12,7 @@ function VariantSelector({ product }: Props) {
   const possibilities = useVariantPossibilities(hasVariant, product);
 
   return (
-    <ul class="flex flex-col gap-4">
+    <ul class="flex flex-col gap-6">
       {Object.keys(possibilities)?.filter((item) =>
         !item.includes("Emabalgem Presente")
       )?.map((name) => (
