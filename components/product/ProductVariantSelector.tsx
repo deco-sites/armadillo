@@ -21,7 +21,7 @@ function VariantSelector({ product, sizeGuide }: Props) {
         <>
           {name === "Tamanho"
             ? (
-              <div class="flex flex-col md:flex-row items-center justify-between w-full">
+              <div class="flex flex-col md:flex-row md:items-center justify-between w-full gap-3">
                 <li class="flex flex-col lg:flex-row lg:items-center gap-2">
                   <span class="text-sm lg:min-w-[120px] uppercase">{name}</span>
                   <ul class="flex flex-row gap-3">
