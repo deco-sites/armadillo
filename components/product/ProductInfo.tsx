@@ -70,6 +70,11 @@ function ProductInfo({ page, layout }: Props) {
     listPrice,
   });
 
+  const sizeGuide =
+    product?.isVariantOf?.additionalProperty?.find((item) =>
+      item.name === "Medidas"
+    )?.value || null;
+
   const code =
     product?.additionalProperty?.find((item) => item.name === "RefId")?.value ||
     null;
@@ -130,7 +135,7 @@ function ProductInfo({ page, layout }: Props) {
       </div>
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">
-        <ProductSelector product={product} />
+        <ProductSelector product={product} sizeGuide={sizeGuide} />
       </div>
       {/* Add to Cart and Favorites button */}
       <div class="mt-4 sm:mt-6 flex flex-col gap-2 pb-4 border-b border-b-black/30">
