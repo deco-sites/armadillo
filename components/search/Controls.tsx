@@ -42,7 +42,7 @@ function SearchControls(
                   : "flex justify-center items-center gap-0.5 py-0.5 w-[168px] h-[32px] leading-[19px] border border-gray-200 sm:hidden"}
               >
                 Filtros
-                <Icon id="FilterList" width={16} height={16} />
+                <Icon id="Filter" width={16} height={16} />
               </button>
             </div>
 
