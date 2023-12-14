@@ -65,14 +65,16 @@ function Cart({
         : (
           <>
             {/* Free Shipping Bar */}
-            <div class="px-2 py-4 w-full">
+            {
+              /* <div class="px-2 py-4 w-full">
               <FreeShippingProgressBar
                 total={total}
                 locale={locale}
                 currency={currency}
                 target={freeShippingTarget}
               />
-            </div>
+            </div> */
+            }
 
             {/* Cart Items */}
             <ul
@@ -96,37 +98,53 @@ function Cart({
             {/* Cart Footer */}
             <footer class="w-full">
               {/* Subtotal */}
+              <div class="w-full flex justify-between px-4 text-sm pt-6 pb-2">
+                <span>Total dos itens</span>
+                <span class="px-4">
+                  {formatPrice(subtotal, currency, locale)}
+                </span>
+              </div>
+
               <div class="border-t border-base-200 py-2 flex flex-col">
-                {discounts > 0 && (
+                {onAddCoupon && (
+                  <Coupon
+                    onAddCoupon={onAddCoupon}
+                    coupon={coupon}
+                    title="Código do vendedor"
+                    placeholder="Insira o código do vendedor"
+                  />
+                )}
+              </div>
+
+              <div class="border-t border-base-200 py-2 flex flex-col">
+                {
+                  /* {discounts > 0 && (
                   <div class="flex justify-between items-center px-4">
                     <span class="text-sm">Descontos</span>
                     <span class="text-sm">
                       {formatPrice(discounts, currency, locale)}
                     </span>
                   </div>
-                )}
-                <div class="w-full flex justify-between px-4 text-sm">
-                  <span>Subtotal</span>
-                  <span class="px-4">
-                    {formatPrice(subtotal, currency, locale)}
-                  </span>
-                </div>
+                )} */
+                }
                 {onAddCoupon && (
                   <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
                 )}
               </div>
 
               {/* Total */}
-              <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
+              <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 px-4 text-sm">
                 <div class="flex justify-between items-center w-full">
                   <span>Total</span>
-                  <span class="font-medium text-xl">
+                  <span class="font-medium pr-4">
                     {formatPrice(total, currency, locale)}
                   </span>
                 </div>
-                <span class="text-sm text-base-300">
+                {
+                  /* <span class="text-sm text-base-300">
                   Taxas e fretes serão calculados no checkout
-                </span>
+                </span> */
+                }
               </div>
 
               <div class="flex items-center justify-between gap-3 p-4">

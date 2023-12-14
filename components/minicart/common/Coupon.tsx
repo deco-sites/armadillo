@@ -2,17 +2,19 @@ import Button from "$store/components/ui/Button.tsx";
 import { useState } from "preact/hooks";
 
 export interface Props {
+  title?: string;
+  placeholder?: string;
   coupon?: string;
   onAddCoupon: (text: string) => Promise<void>;
 }
 
-function Coupon({ coupon, onAddCoupon }: Props) {
+function Coupon({ coupon, onAddCoupon, title, placeholder }: Props) {
   const [loading, setLoading] = useState(false);
   const [display, setDisplay] = useState(false);
 
   return (
     <div class="flex justify-between items-center px-4">
-      <span class="text-sm">Cupom de desconto</span>
+      <span class="text-sm">{title || "Cupom"}</span>
       {display
         ? (
           <form
@@ -40,7 +42,7 @@ function Coupon({ coupon, onAddCoupon }: Props) {
               class="input join-item"
               type="text"
               value={coupon ?? ""}
-              placeholder={"Cupom"}
+              placeholder={placeholder || "Insira seu cupom"}
             />
             <Button
               class="join-item"
