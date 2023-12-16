@@ -11,20 +11,6 @@ function GlobalTags() {
 
       {/* Web Manifest */}
       <link rel="manifest" href={asset("/site.webmanifest")} />
-
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://vfr-v3-production.sizebay.technology/V4/implantation/index.css"
-        id="sizebay__stylesheet"
-      />
-
-      <script
-        defer={true}
-        id="sizebay-vfr-v4"
-        src="https://static.sizebay.technology/3320/prescript.js"
-      >
-      </script>
     </Head>
   );
 }
