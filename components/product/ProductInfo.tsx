@@ -8,6 +8,7 @@ import AddToCartButtonNuvemshop from "$store/islands/AddToCartButton/nuvemshop.t
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
+import SizeGuide from "$store/components/product/SizeGuide.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -135,8 +136,10 @@ function ProductInfo({ page, layout }: Props) {
       </div>
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">
-        <ProductSelector product={product} sizeGuide={sizeGuide} />
+        <ProductSelector product={product} />
       </div>
+
+      <SizeGuide />
       {/* Add to Cart and Favorites button */}
       <div class="mt-4 sm:mt-6 flex flex-col gap-2 pb-4 border-b border-b-black/30">
         {availability === "https://schema.org/InStock"

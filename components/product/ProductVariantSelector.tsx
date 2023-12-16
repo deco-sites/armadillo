@@ -1,14 +1,12 @@
 import Avatar from "$store/components/product/Avatar.tsx";
-import SizeGuide from "$store/components/product/SizeGuide.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 
 interface Props {
   product: Product;
-  sizeGuide?: string | null;
 }
 
-function VariantSelector({ product, sizeGuide }: Props) {
+function VariantSelector({ product }: Props) {
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
@@ -45,8 +43,6 @@ function VariantSelector({ product, sizeGuide }: Props) {
                     ))}
                   </ul>
                 </li>
-
-                {sizeGuide && <SizeGuide sizeGuide={sizeGuide} />}
               </div>
             )
             : (
