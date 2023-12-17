@@ -81,7 +81,10 @@ function ProductInfo({ page, layout }: Props) {
     null;
 
   return (
-    <div class="flex flex-col xl:max-w-[85%] xl:ml-auto sm:pt-10" id={id}>
+    <div
+      class="flex flex-col xl:max-w-[85%] xl:ml-auto sm:pt-10 xl:min-w-[500px]"
+      id={id}
+    >
       {/* Code and name */}
       <div class="flex items-center gap-1 mt-4 sm:mt-8">
         <h1>

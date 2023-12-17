@@ -12,6 +12,7 @@ function VariantSelector({ product }: Props) {
   const possibilities = useVariantPossibilities(hasVariant, product);
 
   const excludedKeys = ["Nome", "Sobrenome", "Emabalgem Presente"];
+  const sizes = ["PP", "P", "M", "G", "GG", "3G"];
 
   return (
     <ul class="flex flex-col gap-6">
@@ -25,22 +26,25 @@ function VariantSelector({ product }: Props) {
                 <li class="flex flex-col lg:flex-row lg:items-center gap-2">
                   <span class="text-sm lg:min-w-[120px] uppercase">{name}</span>
                   <ul class="grid grid-cols-6 gap-3">
-                    {Object.entries(possibilities[name]).map((
-                      [value, link],
-                    ) => (
-                      <li>
-                        <button f-partial={link} f-client-nav>
-                          <Avatar
-                            content={value}
-                            variant={link === url
-                              ? "active"
-                              : link
-                              ? "default"
-                              : "disabled"}
-                          />
-                        </button>
-                      </li>
-                    ))}
+                    {Object.entries(possibilities[name])
+                      .sort(([sizeA], [sizeB]) => {
+                        const order = ["PP", "P", "M", "G", "GG", "3G"];
+                        return order.indexOf(sizeA) - order.indexOf(sizeB);
+                      })
+                      .map(([value, link]) => (
+                        <li key={value}>
+                          <button f-partial={link} f-client-nav>
+                            <Avatar
+                              content={value}
+                              variant={link === url
+                                ? "active"
+                                : link
+                                ? "default"
+                                : "disabled"}
+                            />
+                          </button>
+                        </li>
+                      ))}
                   </ul>
                 </li>
               </div>

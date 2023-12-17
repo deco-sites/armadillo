@@ -8,8 +8,8 @@ const colors: Record<string, string> = {
   "Amarelo": "bg-[#e6c590]",
   "Areia": "bg-[#ede2ca]",
   "Azul": "bg-[#315794]",
-  "Azul%20Marinho": "bg-[#020062]",
-  "Azul%20mar": "bg-[#3572ab]",
+  "Azul Marinho": "bg-[#020062]",
+  "Azul Mar": "bg-[#3572ab]",
   "Indigo": "bg-[#043560]",
   "Argila": "bg-[#b8956d]",
   "Militar": "bg-[#686657]",
@@ -22,7 +22,6 @@ const colors: Record<string, string> = {
   "Cinza": "bg-[#838587]",
   "Goiaba": "bg-[#b42e58]",
   "Branco": "bg-[#FFFFFF]",
-  "Off%20White": "bg-[#FFFFFF]",
   "Off White": "bg-[#FFFFFF]",
   "Grafite": "bg-[#FFFFFF]",
   "Kraft": "bg-[#9c7d45]",
@@ -31,7 +30,7 @@ const colors: Record<string, string> = {
   "Preto": "bg-[#3b3838]",
   "Rosa": "bg-[#f1bdd2]",
   "Verde": "bg-[#2b632a]",
-  "Verde%20Militar": "bg-[#314302]",
+  "Verde Militar": "bg-[#314302]",
   "Vermelho": "bg-[#a20100]",
 
   // Color variants - only applied when no color as content is passed
