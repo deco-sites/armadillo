@@ -44,8 +44,6 @@ function Cart({
   const isEmtpy = items.length === 0;
   const [shippingValue, setShippingValue] = useState<number | null>(null);
 
-  console.log(shippingValue);
-
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
@@ -100,15 +98,13 @@ function Cart({
 
               {/* Free Shipping Bar */}
               {shippingValue !== null && (
-                <div class="border-t border-base-200 py-2 flex flex-col w-full">
-                  <FreeShippingProgressBar
-                    total={total}
-                    locale={locale}
-                    currency={currency}
-                    target={freeShippingTarget}
-                    shippingValue={shippingValue}
-                  />
-                </div>
+                <FreeShippingProgressBar
+                  total={total}
+                  locale={locale}
+                  currency={currency}
+                  target={freeShippingTarget}
+                  shippingValue={shippingValue}
+                />
               )}
 
               <div class="border-t border-base-200 py-2 flex flex-col">
