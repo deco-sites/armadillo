@@ -2,9 +2,11 @@ import Button from "$store/components/ui/Button.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useUI } from "$store/sdk/useUI.ts";
+import { useState } from "preact/hooks";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
+import Shipping from "./Shipping.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 
 interface Props {
@@ -40,6 +42,9 @@ function Cart({
 }: Props) {
   const { displayCart } = useUI();
   const isEmtpy = items.length === 0;
+  const [shippingValue, setShippingValue] = useState<number | null>(null);
+
+  console.log(shippingValue);
 
   return (
     <div
@@ -64,18 +69,6 @@ function Cart({
         )
         : (
           <>
-            {/* Free Shipping Bar */}
-            {
-              /* <div class="px-2 py-4 w-full">
-              <FreeShippingProgressBar
-                total={total}
-                locale={locale}
-                currency={currency}
-                target={freeShippingTarget}
-              />
-            </div> */
-            }
-
             {/* Cart Items */}
             <ul
               role="list"
@@ -105,6 +98,19 @@ function Cart({
                 </span>
               </div>
 
+              {/* Free Shipping Bar */}
+              {shippingValue !== null && (
+                <div class="border-t border-base-200 py-2 flex flex-col w-full">
+                  <FreeShippingProgressBar
+                    total={total}
+                    locale={locale}
+                    currency={currency}
+                    target={freeShippingTarget}
+                    shippingValue={shippingValue}
+                  />
+                </div>
+              )}
+
               <div class="border-t border-base-200 py-2 flex flex-col">
                 {onAddCoupon && (
                   <Coupon
@@ -131,6 +137,15 @@ function Cart({
                   <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
                 )}
               </div>
+
+              {shippingValue === null && (
+                <div class="border-t border-base-200 py-2 flex flex-col">
+                  <Shipping
+                    shippingValue={shippingValue}
+                    setShippingValue={setShippingValue}
+                  />
+                </div>
+              )}
 
               {/* Total */}
               <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 px-4 text-sm">

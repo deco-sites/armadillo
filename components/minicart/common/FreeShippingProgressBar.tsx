@@ -6,30 +6,41 @@ interface Props {
   target: number;
   locale: string;
   currency: string;
+  shippingValue: number;
 }
 
-function FreeShippingProgressBar({ target, total, currency, locale }: Props) {
+function FreeShippingProgressBar(
+  { target, total, currency, locale, shippingValue }: Props,
+) {
   const remaining = target - total;
   const percent = Math.floor((total / target) * 100);
 
+  const formattedShipping = (shippingValue / 100)?.toLocaleString(locale, {
+    minimumFractionDigits: 2,
+  });
+
   return (
-    <div class="flex flex-col w-full gap-2">
-      <div class="flex justify-center items-center gap-2 text-black">
-        <Icon id="Truck" size={24} />
-        {remaining > 0
-          ? (
-            <span>
-              Faltam {formatPrice(remaining, currency, locale)}{" "}
-              para ganhar frete grátis!
-            </span>
-          )
-          : <span>Você ganhou frete grátis!</span>}
-      </div>
-      <progress
-        class="progress progress-warning w-full"
-        value={percent}
-        max={100}
-      />
+    <div class="flex flex-col w-full gap-2 pl-4 pr-8 text-sm">
+      <p class="flex items-center justify-between w-full">
+        <span>Total do Frete</span>
+        {shippingValue && shippingValue > 0 && (
+          <span>R$ {formattedShipping}</span>
+        )}
+      </p>
+
+      {remaining > 0
+        ? (
+          <span>
+            Faltam apenas {formatPrice(remaining, currency, locale)} para ganhar
+            {" "}
+            <b>frete grátis</b>
+          </span>
+        )
+        : <span>Você ganhou frete grátis!</span>}
+
+      <span class="opacity-70">
+        Confira opções de retirada em loja na área de pagamento
+      </span>
     </div>
   );
 }
