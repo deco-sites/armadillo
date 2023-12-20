@@ -15,6 +15,7 @@ function Dropdown({ icon, title, items }: Props) {
     <div class="fixed bottom-6 left-6 z-40">
       <div class="dropdown dropdown-top">
         <div
+          aria-label="open dropdown"
           tabIndex={0}
           role="button"
           class="flex items-center justify-center w-[60px] h-[60px] p-1.5 rounded-full bg-[#25d366] text-white"
@@ -30,7 +31,7 @@ function Dropdown({ icon, title, items }: Props) {
 
         <ul
           tabIndex={0}
-          class="dropdown-content !p-0 z-[1] shadow rounded-box w-[350px] lg:h-[290px] bg-[#bbb]"
+          class="dropdown-content !p-0 z-[1] shadow rounded-box w-[250px] sm:w-[350px] lg:h-[290px] bg-[#bbb]"
         >
           <div class="flex flex-col w-full h-full">
             <div class="bg-[#2c2c2c] rounded-t-2xl text-white font-semibold uppercase border-b border-b-white py-3 pl-6 text-sm">
