@@ -126,22 +126,22 @@ function Buttons() {
   return (
     <>
       <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
-        <Slider.PrevButton class="btn btn-circle glass">
+        <Slider.PrevButton>
           <Icon
             class="text-base-100"
-            size={24}
+            size={40}
             id="ChevronLeft"
-            strokeWidth={3}
+            strokeWidth={2}
           />
         </Slider.PrevButton>
       </div>
       <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
-        <Slider.NextButton class="btn btn-circle glass">
+        <Slider.NextButton>
           <Icon
-            class="text-base-100"
-            size={24}
-            id="ChevronRight"
-            strokeWidth={3}
+            class="text-base-100 rotate-180"
+            size={40}
+            id="ChevronLeft"
+            strokeWidth={2}
           />
         </Slider.NextButton>
       </div>
@@ -182,11 +182,19 @@ function BannerCarousel(props: Props) {
         })}
       </Slider>
 
-      <Buttons />
+      {images && images.length > 1 && (
+        <>
+          <Buttons />
 
-      <Dots images={images} interval={interval} />
+          <Dots images={images} interval={interval} />
 
-      <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
+          <SliderJS
+            rootId={id}
+            interval={interval && interval * 1e3}
+            infinite
+          />
+        </>
+      )}
     </div>
   );
 }

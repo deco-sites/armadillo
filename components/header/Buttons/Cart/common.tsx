@@ -1,5 +1,5 @@
+import { asset } from "$fresh/runtime.ts";
 import Button from "$store/components/ui/Button.tsx";
-import Image from "apps/website/components/Image.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
@@ -43,8 +43,8 @@ function CartButton({ loading, currency, total, items }: Props) {
         loading={loading}
         onClick={onClick}
       >
-        <Image
-          src="https://armadillo.vteximg.com.br/arquivos/backpack.png?v=637180013501100000"
+        <img
+          src={asset("/image/backpack.png")}
           alt="Bag Icon"
           width={24}
           height={24}

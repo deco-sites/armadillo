@@ -11,6 +11,7 @@ import Social from "$store/components/footer/Social.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
+import { asset } from "$fresh/runtime.ts";
 
 export type Item = {
   label: string;
@@ -239,7 +240,7 @@ function Footer({
             <div class="flex flex-col items-center justify-center container max-w-[90%]">
               <a href="https://www.siteblindado.com/consumidor/selo-blindado/?language1=pt&hostname=www.armadillo.com.br">
                 <img
-                  src="https://seal.siteblindado.com/www.armadillo.com.br/seal.png"
+                  src={asset("/image/seal.png")}
                   alt="site blindado"
                   width={115}
                   height={32}

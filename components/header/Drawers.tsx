@@ -3,7 +3,7 @@ import Cart from "$store/components/minicart/Cart.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
-import Image from "apps/website/components/Image.tsx";
+import { asset } from "$fresh/runtime.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
@@ -44,8 +44,8 @@ const Aside = (
     {title && (
       <div class="flex justify-center items-center pt-10 pb-2">
         {isMinicart && (
-          <Image
-            src="https://armadillo.vteximg.com.br/arquivos/backpack.png?v=637180013501100000"
+          <img
+            src={asset("/image/backpack.png")}
             alt="Bag Icon"
             width={56}
             height={56}

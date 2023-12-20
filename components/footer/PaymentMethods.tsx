@@ -1,3 +1,4 @@
+import Image from "apps/website/components/Image.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface PaymentItem {
@@ -22,7 +23,7 @@ export default function PaymentMethods(
                   title={item.description}
                 >
                   <div>
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.description}
                       width={item.width || 45}
