@@ -103,7 +103,6 @@ function Searchbar({
       >
         <input
           ref={searchInputRef}
-          id="search-input"
           class={`${
             !displaySearchPopup.value ? "hidden" : "flex"
           } flex-grow w-[90px] sm:w-[130px] md:w-full outline-none placeholder-shown:sibling:hidden placeholder:text-sm placeholder:text-black`}
