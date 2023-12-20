@@ -143,8 +143,9 @@ function ProductInfo({ page, layout }: Props) {
       </div>
 
       <SizeGuide />
+
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-6 flex flex-col gap-2 pb-4 border-b border-b-black/30">
+      <div class="mt-2 flex flex-col gap-2 pb-4 border-b border-b-black/30">
         {availability === "https://schema.org/InStock"
           ? (
             <>
