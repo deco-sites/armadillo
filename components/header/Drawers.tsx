@@ -57,6 +57,7 @@ const Aside = (
         </h1>
         {onClose && (
           <Button
+            aria-label="close cart"
             class="btn btn-ghost absolute top-4 right-4 z-[1000]"
             onClick={onClose}
           >
