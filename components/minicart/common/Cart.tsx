@@ -190,7 +190,7 @@ function Cart({
                       });
                     }}
                   >
-                    Fechar pedido
+                    Ir para sua mochila
                   </Button>
                 </a>
               </div>

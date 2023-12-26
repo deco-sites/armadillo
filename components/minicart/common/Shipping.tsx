@@ -50,7 +50,7 @@ function Shipping({ shippingValue, setShippingValue }: Props) {
     }
 
     shippingCalculate();
-  }, [cart.value, shippingValue]);
+  }, [items]);
 
   return (
     <div class="flex justify-between items-center pl-4 pr-8 w-full">
