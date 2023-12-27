@@ -6,6 +6,7 @@ import { useState } from "preact/hooks";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
+import SellerCode from "./SellerCode.tsx";
 import Shipping from "./Shipping.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 
@@ -109,9 +110,8 @@ function Cart({
 
               <div class="border-t border-base-200 py-2 flex flex-col">
                 {onAddCoupon && (
-                  <Coupon
+                  <SellerCode
                     onAddCoupon={onAddCoupon}
-                    coupon={coupon}
                     title="Código do vendedor"
                     placeholder="Insira o código do vendedor"
                   />

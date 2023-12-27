@@ -30,6 +30,7 @@ const colors: Record<string, string> = {
   "Laranja": "bg-[#ff5b00]",
   "Marrom": "bg-[#5a4535]",
   "Preto": "bg-[#3b3838]",
+  "Black": "bg-[#3b3838]",
   "Rosa": "bg-[#f1bdd2]",
   "Verde": "bg-[#2b632a]",
   "Verde Militar": "bg-[#314302]",
