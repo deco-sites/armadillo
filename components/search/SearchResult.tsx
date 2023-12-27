@@ -32,8 +32,19 @@ export interface Props {
 
 function NotFound() {
   return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
+    <div class="w-full flex flex-col gap-4 justify-center items-center pt-20 pb-32">
+      <span>Nenhum resultado para a sua busca.</span>
+
+      <div class="flex items-center justify-center gap-0.5">
+        <Icon id="Zoom" size={24} strokeWidth={2} />
+
+        <div class="flex items-center justify-center">
+          <p>
+            <b>Faça um nova busca.</b>{"   "}
+            Tente utilizar palavras-chave menos específicas
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -125,7 +136,7 @@ function Result({
 }
 
 function SearchResult({ page, ...props }: Props) {
-  if (!page) {
+  if (!page || page.products.length === 0) {
     return <NotFound />;
   }
 
