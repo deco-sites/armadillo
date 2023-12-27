@@ -12,10 +12,9 @@ function VariantSelector({ product }: Props) {
   const possibilities = useVariantPossibilities(hasVariant, product);
 
   const excludedKeys = ["Nome", "Sobrenome", "Emabalgem Presente"];
-  const sizes = ["PP", "P", "M", "G", "GG", "3G"];
 
   return (
-    <ul class="flex flex-col gap-6">
+    <div class="flex flex-col gap-6">
       {Object.keys(possibilities)?.filter((item) =>
         !excludedKeys.includes(item)
       )?.map((name) => (
@@ -33,7 +32,11 @@ function VariantSelector({ product }: Props) {
                       })
                       .map(([value, link]) => (
                         <li key={value}>
-                          <button f-partial={link} f-client-nav>
+                          <button
+                            aria-label="change size"
+                            f-partial={link}
+                            f-client-nav
+                          >
                             <Avatar
                               content={value}
                               variant={link === url
@@ -50,12 +53,16 @@ function VariantSelector({ product }: Props) {
               </div>
             )
             : (
-              <li class="flex flex-col lg:flex-row lg:items-center gap-2">
+              <div class="flex flex-col lg:flex-row lg:items-center gap-2">
                 <span class="text-sm lg:min-w-[120px] uppercase">{name}</span>
                 <ul class="flex flex-row gap-3">
                   {Object.entries(possibilities[name]).map(([value, link]) => (
                     <li>
-                      <button f-partial={link} f-client-nav>
+                      <button
+                        aria-label="change properties"
+                        f-partial={link}
+                        f-client-nav
+                      >
                         <Avatar
                           content={value}
                           variant={link === url
@@ -68,11 +75,11 @@ function VariantSelector({ product }: Props) {
                     </li>
                   ))}
                 </ul>
-              </li>
+              </div>
             )}
         </>
       ))}
-    </ul>
+    </div>
   );
 }
 

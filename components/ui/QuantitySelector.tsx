@@ -27,6 +27,7 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
         -
       </Button>
       <input
+        aria-label="change quantity"
         class="flex items-center justify-center text-center w-[35px] h-[35px] join-item [appearance:textfield] border border-[#999] rounded-none bg-[#f2f2f2]"
         type="number"
         inputMode="numeric"

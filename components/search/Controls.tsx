@@ -29,6 +29,7 @@ function SearchControls(
       <div class="flex flex-col md:flex-row">
         <div class="collapse w-full cursor-default focus:outline-none rounded-none border-none">
           <input
+            aria-label="open filters"
             type="checkbox"
             class="peer w-[178px] h-[32px] absolute !p-0 rounded-none border-none"
           />
@@ -36,7 +37,7 @@ function SearchControls(
           <div class="flex gap-2 w-full">
             <div class="collapse-title w-[195px] h-[32px] !p-0">
               <button
-                aria-label="open filters"
+                aria-label="abrir filtros"
                 class={displayFilter
                   ? "flex text-[#666] text-sm uppercase justify-center items-center gap-1 py-0.5 w-[170px] h-[32px] leading-[19px] border border-gray-200"
                   : "flex justify-center items-center gap-0.5 py-0.5 w-[168px] h-[32px] leading-[19px] border border-gray-200 sm:hidden"}
@@ -48,7 +49,7 @@ function SearchControls(
 
             <button
               onClick={removeSort}
-              aria-label="remove filters"
+              aria-label="remover filtros"
               class="flex text-[#666] text-sm lowercase justify-center items-center py-0.5 w-[120px] h-[32px] leading-[19px] border border-gray-200"
             >
               Remover filtros
