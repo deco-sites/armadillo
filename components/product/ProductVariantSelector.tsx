@@ -22,7 +22,7 @@ function VariantSelector({ product }: Props) {
           {name === "Tamanho"
             ? (
               <div class="flex flex-col md:flex-row md:items-center justify-between w-full gap-5">
-                <li class="flex flex-col lg:flex-row lg:items-center gap-2">
+                <div class="flex flex-col lg:flex-row lg:items-center gap-2">
                   <span class="text-sm lg:min-w-[120px] uppercase">{name}</span>
                   <ul class="grid grid-cols-6 gap-3">
                     {Object.entries(possibilities[name])
@@ -33,7 +33,7 @@ function VariantSelector({ product }: Props) {
                       .map(([value, link]) => (
                         <li key={value}>
                           <button
-                            aria-label="change size"
+                            aria-label={`change size to ${value}`}
                             f-partial={link}
                             f-client-nav
                           >
@@ -49,7 +49,7 @@ function VariantSelector({ product }: Props) {
                         </li>
                       ))}
                   </ul>
-                </li>
+                </div>
               </div>
             )
             : (
