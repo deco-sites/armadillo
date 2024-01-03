@@ -109,13 +109,10 @@ function Cart({
               )}
 
               <div class="border-t border-base-200 py-2 flex flex-col">
-                {onAddCoupon && (
-                  <SellerCode
-                    onAddCoupon={onAddCoupon}
-                    title="Código do vendedor"
-                    placeholder="Insira o código do vendedor"
-                  />
-                )}
+                <SellerCode
+                  title="Código do vendedor"
+                  placeholder="Insira o código do vendedor"
+                />
               </div>
 
               <div class="border-t border-base-200 py-2 flex flex-col">

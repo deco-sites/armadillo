@@ -1,17 +1,19 @@
 import Button from "$store/components/ui/Button.tsx";
 import { useState } from "preact/hooks";
+import { useCart } from "apps/vtex/hooks/useCart.ts";
 
 export interface Props {
   title?: string;
   placeholder?: string;
   coupon?: string;
-  onAddCoupon: (text: string) => Promise<void>;
 }
 
-function Coupon({ onAddCoupon, title, placeholder }: Props) {
+function Coupon({ title, placeholder }: Props) {
   const [loading, setLoading] = useState(false);
   const [display, setDisplay] = useState(true);
   const [coupon, setCoupon] = useState("");
+
+  const { sendAttachment } = useCart();
 
   return (
     <div class="flex justify-between items-center pl-4 pr-8 w-full">
@@ -33,7 +35,10 @@ function Coupon({ onAddCoupon, title, placeholder }: Props) {
 
               try {
                 setLoading(true);
-                await onAddCoupon(text);
+                await sendAttachment({
+                  attachment: "marketingData",
+                  body: { utmCampaign: text, utmiCampaign: text },
+                });
                 setDisplay(false);
               } finally {
                 setLoading(false);
