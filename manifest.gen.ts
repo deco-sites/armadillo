@@ -35,17 +35,18 @@ import * as $$$$$$27 from "./sections/Content/CardImage.tsx";
 import * as $$$$$$28 from "./sections/Content/TextPage.tsx";
 import * as $$$$$$29 from "./sections/Content/Logos.tsx";
 import * as $$$$$$30 from "./sections/Content/Benefits.tsx";
-import * as $$$$$$31 from "./sections/Content/SectionDescription.tsx";
-import * as $$$$$$32 from "./sections/Links/LinkTree.tsx";
-import * as $$$$$$33 from "./sections/Links/Shortcuts.tsx";
-import * as $$$$$$34 from "./sections/Footer/Footer.tsx";
-import * as $$$$$$35 from "./sections/Layout/GridItem.tsx";
-import * as $$$$$$36 from "./sections/Layout/Container.tsx";
-import * as $$$$$$37 from "./sections/Layout/Grid.tsx";
-import * as $$$$$$38 from "./sections/Layout/Flex.tsx";
-import * as $$$$$$39 from "./sections/Miscellaneous/CookieConsent.tsx";
-import * as $$$$$$40 from "./sections/Miscellaneous/CampaignTimer.tsx";
-import * as $$$$$$41 from "./sections/Miscellaneous/Dropdown.tsx";
+import * as $$$$$$31 from "./sections/Content/StorePage.tsx";
+import * as $$$$$$32 from "./sections/Content/SectionDescription.tsx";
+import * as $$$$$$33 from "./sections/Links/LinkTree.tsx";
+import * as $$$$$$34 from "./sections/Links/Shortcuts.tsx";
+import * as $$$$$$35 from "./sections/Footer/Footer.tsx";
+import * as $$$$$$36 from "./sections/Layout/GridItem.tsx";
+import * as $$$$$$37 from "./sections/Layout/Container.tsx";
+import * as $$$$$$38 from "./sections/Layout/Grid.tsx";
+import * as $$$$$$39 from "./sections/Layout/Flex.tsx";
+import * as $$$$$$40 from "./sections/Miscellaneous/CookieConsent.tsx";
+import * as $$$$$$41 from "./sections/Miscellaneous/CampaignTimer.tsx";
+import * as $$$$$$42 from "./sections/Miscellaneous/Dropdown.tsx";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -61,10 +62,11 @@ const manifest = {
     "deco-sites/armadillo/sections/Content/CardImage.tsx": $$$$$$27,
     "deco-sites/armadillo/sections/Content/Faq.tsx": $$$$$$26,
     "deco-sites/armadillo/sections/Content/Logos.tsx": $$$$$$29,
-    "deco-sites/armadillo/sections/Content/SectionDescription.tsx": $$$$$$31,
+    "deco-sites/armadillo/sections/Content/SectionDescription.tsx": $$$$$$32,
+    "deco-sites/armadillo/sections/Content/StorePage.tsx": $$$$$$31,
     "deco-sites/armadillo/sections/Content/Testimonials.tsx": $$$$$$25,
     "deco-sites/armadillo/sections/Content/TextPage.tsx": $$$$$$28,
-    "deco-sites/armadillo/sections/Footer/Footer.tsx": $$$$$$34,
+    "deco-sites/armadillo/sections/Footer/Footer.tsx": $$$$$$35,
     "deco-sites/armadillo/sections/Gallery.tsx": $$$$$$0,
     "deco-sites/armadillo/sections/Header/Header.tsx": $$$$$$24,
     "deco-sites/armadillo/sections/Images/BannerGrid.tsx": $$$$$$15,
@@ -74,15 +76,15 @@ const manifest = {
     "deco-sites/armadillo/sections/Images/DynamicGallery.tsx": $$$$$$16,
     "deco-sites/armadillo/sections/Images/ImageGallery.tsx": $$$$$$17,
     "deco-sites/armadillo/sections/Images/ShoppableBanner.tsx": $$$$$$11,
-    "deco-sites/armadillo/sections/Layout/Container.tsx": $$$$$$36,
-    "deco-sites/armadillo/sections/Layout/Flex.tsx": $$$$$$38,
-    "deco-sites/armadillo/sections/Layout/Grid.tsx": $$$$$$37,
-    "deco-sites/armadillo/sections/Layout/GridItem.tsx": $$$$$$35,
-    "deco-sites/armadillo/sections/Links/LinkTree.tsx": $$$$$$32,
-    "deco-sites/armadillo/sections/Links/Shortcuts.tsx": $$$$$$33,
-    "deco-sites/armadillo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$40,
-    "deco-sites/armadillo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$39,
-    "deco-sites/armadillo/sections/Miscellaneous/Dropdown.tsx": $$$$$$41,
+    "deco-sites/armadillo/sections/Layout/Container.tsx": $$$$$$37,
+    "deco-sites/armadillo/sections/Layout/Flex.tsx": $$$$$$39,
+    "deco-sites/armadillo/sections/Layout/Grid.tsx": $$$$$$38,
+    "deco-sites/armadillo/sections/Layout/GridItem.tsx": $$$$$$36,
+    "deco-sites/armadillo/sections/Links/LinkTree.tsx": $$$$$$33,
+    "deco-sites/armadillo/sections/Links/Shortcuts.tsx": $$$$$$34,
+    "deco-sites/armadillo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$41,
+    "deco-sites/armadillo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$40,
+    "deco-sites/armadillo/sections/Miscellaneous/Dropdown.tsx": $$$$$$42,
     "deco-sites/armadillo/sections/Newsletter/Newsletter.tsx": $$$$$$1,
     "deco-sites/armadillo/sections/Product/ImageGalleryFrontBack.tsx": $$$$$$2,
     "deco-sites/armadillo/sections/Product/ImageGallerySlider.tsx": $$$$$$10,
