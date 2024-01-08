@@ -14,6 +14,7 @@ export interface Item {
     alt: string;
   };
   name: string;
+  variantName?: string;
   quantity: number;
   price: {
     sale: number;
@@ -42,7 +43,7 @@ function CartItem(
     itemToAnalyticsItem,
   }: Props,
 ) {
-  const { image, name, price: { sale, list }, quantity } = item;
+  const { image, name, variantName, price: { sale, list }, quantity } = item;
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
 
@@ -74,7 +75,7 @@ function CartItem(
   const { color, size } = extractSizeAndColor(name);
 
   const formattedName = size && color
-    ? name.replace(new RegExp(`\\b${size}\\b|\\b${color}\\b`, "gi"), "").trim()
+    ? name.replace(new RegExp(`\\b${size}\\b`, "gi"), "").trim()
     : name;
 
   return (
@@ -108,7 +109,7 @@ function CartItem(
         />
 
         <div class="flex flex-col gap-2">
-          <span>{formattedName}</span>
+          <span>{variantName ?? formattedName}</span>
 
           <div class="flex items-center gap-2.5">
             <Avatar

@@ -7,6 +7,7 @@ const colors: Record<string, string> = {
   "White": "bg-[#fff]",
   "Amarelo": "bg-[#e6c590]",
   "Areia": "bg-[#ede2ca]",
+  "Aspen": "bg-[#2b632a]",
   "Azul": "bg-[#315794]",
   "Azul Marinho": "bg-[#020062]",
   "Azul%20Marinho": "bg-[#020062]",
