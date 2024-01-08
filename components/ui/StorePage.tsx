@@ -67,11 +67,12 @@ export default function Testimonials(
         />
       </Picture>
       <div class="w-full container px-4 py-8 flex flex-col lg:py-5 lg:px-0">
-        <h1 class="text-[35px] font-semibold font-sans">{title}</h1>
-        <div class="flex w-full  flex-row flex-wrap  justify-start">
+        <h1 class="text-[35px] font-semibold font-sans w-full ml-[20%] lg:ml-0 py-5">{title}</h1>
+        <div class="flex w-full  flex-row flex-wrap  justify-center lg:justify-start">
+      
           {stores?.map((store) => {
             return (
-              <div class="flex flex-col w-1/2 gap-2 pb-2">
+              <div class="flex flex-col w-3/5 lg:w-1/2 gap-1 pb-5">
                 <h2 class="font-bold text-[12px]">{store.name}</h2>
 
                 <span class="font-semibold text-[12px]">{store.address}</span>
@@ -86,7 +87,7 @@ export default function Testimonials(
                         .replace(/-/g, "").replace(/\s/g, "")
                     }`}
                     target="_blank"
-                    class="flex flex-row bg-[#25d366] rounded-full gap-1 text-center items-centerx' px-2 text-white ml-3"
+                    class="flex flex-row bg-[#25d366] rounded-full gap-1 text-center items-center' PY-2 px-2 text-white ml-3"
                   >
                     <Icon
                       id={"WhatsApp"}
